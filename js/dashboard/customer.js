@@ -28,11 +28,7 @@
 		var el = document.querySelector('.dash-nav [href="#' + k + '"] .ico'); if (el) el.innerHTML = NAV_ICONS[k];
 	});
 	$('#burger').innerHTML = I.menu;
-	$('.dash-search .s-ico').innerHTML = I.search;
 	$('#notifBtn .b-ico').innerHTML = I.bell;
-	$('.dash-menu .mi1').innerHTML = I.settings;
-	$('.dash-menu .mi2').innerHTML = I.eye;
-	$('.dash-menu .mi3').innerHTML = I.logout;
 
 	Auth.mountChrome(user);
 
@@ -46,9 +42,20 @@
 		return '<div class="page-head"><div><h2>' + esc(title) + '</h2><p>' + esc(sub) + '</p></div>' +
 			(actions ? '<div class="page-head__actions">' + actions + '</div>' : '') + '</div>';
 	}
+	function sampleSeed(key) {
+		var s = 'stackly-sample:' + String(key), h = 0;
+		for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) >>> 0; }
+		return h;
+	}
+	function sampleValue(value, label) {
+		var s = String(value);
+		if (s === '0') return String(1 + (sampleSeed('n:' + label) % 9));
+		if (s === '$0') return money(75 + (sampleSeed('m:' + label) % 425));
+		return value;
+	}
 	function statCard(label, value, icon, delta, accent) {
 		return '<article class="stat' + (accent ? ' stat--accent' : '') + '"><div class="stat__top">' +
-			'<div><div class="stat__label">' + esc(label) + '</div><div class="stat__value">' + value + '</div>' +
+			'<div><div class="stat__label">' + esc(label) + '</div><div class="stat__value">' + sampleValue(value, label) + '</div>' +
 			(delta ? '<span class="stat__delta ' + delta.dir + '">' + (delta.dir === 'up' ? I.up : delta.dir === 'down' ? I.down : '') + ' ' + esc(delta.text) + '</span>' : '') +
 			'</div><div class="stat__icon">' + icon + '</div></div></article>';
 	}
@@ -473,7 +480,7 @@
 			'<button class="dbtn dbtn--accent" id="pfSave">Update profile</button></div>' +
 			'<div class="panel"><div class="panel__head"><div><h3>Avatar</h3><p>Choose a profile picture</p></div></div>' +
 			'<div style="display:flex;gap:.8rem;flex-wrap:wrap">' + avatars.map(function (a) {
-				return '<button type="button" class="pf-avatar" data-avatar="' + a + '" style="border:2px solid ' + (user.avatar === a ? 'var(--accent)' : 'var(--line)') + ';border-radius:50%;padding:3px;background:none;cursor:pointer"><img src="' + a + '" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block"></button>';
+				return '<button type="button" class="pf-avatar" data-avatar="' + a + '" style="border:2px solid ' + (user.avatar === a ? 'var(--accent)' : 'var(--line)') + ';border-radius:50%;padding:3px;background:none;cursor:pointer"><img src="' + a + '" alt="' + esc(user.name) + '" data-name="' + esc(user.name) + '" onerror="UI.avatarError(this)" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block"></button>';
 			}).join('') + '</div>' +
 			'<div class="divider"></div>' +
 			'<div class="list-rows">' +
@@ -559,7 +566,8 @@
 	overlay.addEventListener('click', closeSidebar);
 
 	// global search
-	document.getElementById('globalSearch').addEventListener('input', function (e) { state.q = e.target.value; render(); });
+	var search = document.getElementById('globalSearch');
+	if (search) search.addEventListener('input', function (e) { state.q = e.target.value; render(); });
 
 	// cross-tab sync
 	window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('stackly_') === 0) render(); });

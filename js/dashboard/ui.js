@@ -9,6 +9,7 @@ window.UI = (function () {
 	function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; }
 	function escape(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
 	function initials(name) { return (name || '?').split(/\s+/).map(function (p) { return p[0]; }).slice(0, 2).join('').toUpperCase(); }
+	function initial(name) { var p = String(name || '').trim().split(/\s+/).filter(Boolean); return (p[0] || 'U').charAt(0).toUpperCase(); }
 
 	/* ---------- icons ---------- */
 	var I = {
@@ -147,8 +148,28 @@ window.UI = (function () {
 	}
 	function avatar(user, size) {
 		size = size || 'avatar-sm';
-		var img = user && user.avatar ? '<img class="' + size + '" src="' + user.avatar + '" alt="">' : '<span class="' + size + '" style="display:inline-grid;place-items:center;background:var(--surface-2);font-family:var(--font-d);font-size:.8rem;color:#fff">' + initials(user && user.name) + '</span>';
-		return img;
+		var name = (user && user.name) || '';
+		if (user && user.avatar) {
+			return '<img class="' + size + '" src="' + escape(user.avatar) + '" alt="' + escape(name) + '" data-name="' + escape(name) + '" onerror="UI.avatarError(this)">';
+		}
+		return '<span class="' + size + ' avatar-initial" aria-hidden="true">' + escape(initial(name)) + '</span>';
+	}
+	/* Swap a broken avatar <img> for a themed circular initial placeholder. */
+	function avatarError(img) {
+		if (!img || !img.parentNode) return;
+		var name = img.getAttribute('data-name') || img.getAttribute('alt') || '';
+		var m = /avatar-(sm|md)/.exec(img.className);
+		var size = m ? 'avatar-' + m[1] : 'avatar-sm';
+		var span = document.createElement('span');
+		span.className = size + ' avatar-initial';
+		span.setAttribute('aria-hidden', 'true');
+		span.textContent = initial(name);
+		if (img.style && (img.style.width || img.style.height)) {
+			span.style.width = img.style.width;
+			span.style.height = img.style.height;
+			span.style.borderRadius = img.style.borderRadius || '50%';
+		}
+		img.parentNode.replaceChild(span, img);
 	}
 
 	/* ---------- charts (dependency-free SVG) ---------- */
@@ -226,10 +247,10 @@ window.UI = (function () {
 	}
 
 	return {
-		icons: I, el: el, escape: escape, initials: initials,
+		icons: I, el: el, escape: escape, initials: initials, initial: initial,
 		toast: toast, modal: modal, confirm: confirm,
 		badge: badge, stars: stars, empty: empty, statusClass: statusClass, STATUS_LABEL: STATUS_LABEL,
-		skeletonStats: skeletonStats, skeletonRows: skeletonRows, avatar: avatar,
+		skeletonStats: skeletonStats, skeletonRows: skeletonRows, avatar: avatar, avatarError: avatarError,
 		lineChart: lineChart, barChart: barChart, donut: donut
 	};
 })();

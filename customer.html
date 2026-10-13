@@ -41,6 +41,10 @@
 						<span id="sideUserRole">—</span>
 					</div>
 				</div>
+				<div class="dash-side-actions">
+					<a class="dash-side-btn" href="index.html" data-home>Go to Home</a>
+					<button class="dash-side-btn dash-side-btn--danger" type="button" data-logout>Logout</button>
+				</div>
 			</div>
 		</aside>
 		<div class="overlay" id="overlay"></div>
@@ -54,23 +58,7 @@
 					<p id="pageSub">Your bookings and vehicles at a glance</p>
 				</div>
 				<div class="dash-topbar__actions">
-					<label class="dash-search">
-						<span class="s-ico"></span>
-						<input type="search" id="globalSearch" placeholder="Search your bookings…" aria-label="Search">
-					</label>
 					<button class="dash-icon-btn" id="notifBtn" aria-label="Notifications"><span class="b-ico"></span><span class="dot" id="notifDot" hidden></span></button>
-					<div class="dash-profile">
-						<button class="dash-profile__btn" id="profileBtn" aria-haspopup="true" aria-expanded="false">
-							<img id="topAvatar" src="images/avatar-1.webp" alt="">
-							<span class="who"><strong id="topUserName" style="display:block;color:#fff;font-family:var(--font-d);font-size:.82rem;line-height:1.1">—</strong><span id="topUserRole" style="font-size:.72rem;color:var(--muted)">—</span></span>
-						</button>
-						<div class="dash-menu" id="profileMenu" role="menu">
-							<div class="dash-menu__head"><strong id="menuName">—</strong><span id="menuEmail">—</span></div>
-							<a href="#profile" data-goto="#profile"><span class="mi1"></span> My profile</a>
-							<a href="index.html"><span class="mi2"></span> View website</a>
-							<button type="button" data-logout><span class="mi3"></span> Sign out</button>
-						</div>
-					</div>
 				</div>
 			</header>
 
@@ -140,5 +128,45 @@
 		});
 	});
 </script>
-<script>function initProfile(){try{var n=localStorage.getItem("userName")||"User";var r=localStorage.getItem("userRole")||"";var ini=n.trim().split(/\s+/).filter(Boolean).map(function(x){return x[0]||"";}).join("").substring(0,2).toUpperCase();var el=document.getElementById("sideUserName");if(el)el.textContent=n;el=document.getElementById("sideUserRole");if(el)el.textContent=r;var av=document.getElementById("sideAvatar");if(av){if(av.tagName==="IMG"){av.alt=n;}else{av.textContent=ini;}}}catch(e){}};document.addEventListener("DOMContentLoaded",initProfile);</script></body>
+<script>
+(function(){
+  try {
+    var r = localStorage.getItem('userRole') || (window.DB && DB.currentUser() && DB.currentUser().role);
+    var p = location.pathname.split('/').pop() || 'customer.html';
+    if (p === 'admin.html' && r === 'customer') { window.location.replace('customer.html'); return; }
+    if (p === 'customer.html' && r === 'admin') { window.location.replace('admin.html'); return; }
+  } catch(e) {}
+})();
+function initProfile(){
+  try {
+    var user = (window.DB && typeof DB.currentUser === 'function') ? DB.currentUser() : null;
+    var n = (user && user.name) || localStorage.getItem("userName") || "User";
+    var r = (user && user.role) || localStorage.getItem("userRole") || "customer";
+    var e = (user && user.email) || localStorage.getItem("userEmail") || "";
+    var roleLabel = r === 'admin' ? 'Administrator' : (r === 'customer' ? 'Customer' : r);
+    var ini = (n.trim().charAt(0) || "U").toUpperCase();
+    var first = n.trim().split(/\s+/)[0] || n;
+
+    var el = document.getElementById("sideUserName"); if(el) el.textContent = n;
+    el = document.getElementById("topUserName"); if(el) el.textContent = n;
+    el = document.getElementById("menuName"); if(el) el.textContent = n;
+    el = document.getElementById("menuEmail"); if(el) el.textContent = e;
+    el = document.getElementById("sideUserRole"); if(el) el.textContent = roleLabel;
+    el = document.getElementById("topUserRole"); if(el) el.textContent = roleLabel;
+    el = document.getElementById("greetName"); if(el) el.textContent = first;
+
+    var av = document.getElementById("sideAvatar");
+    if(av) {
+      if(av.tagName === "IMG") { av.alt = n; }
+      else { av.textContent = ini || "U"; }
+    }
+  } catch(err) {}
+}
+if (document.readyState === 'loading') {
+  document.addEventListener("DOMContentLoaded", initProfile);
+} else {
+  initProfile();
+}
+</script>
+</body>
 </html>

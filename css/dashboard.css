@@ -58,6 +58,18 @@
 .dash-usercard img{width:38px; height:38px; border-radius:50%; object-fit:cover}
 .dash-usercard strong{display:block; font-family:var(--font-d); font-size:.86rem; color:#fff; line-height:1.2}
 .dash-usercard span{font-size:.74rem; color:var(--muted)}
+.dash-side-actions{display:flex; flex-direction:column; gap:.5rem; margin-top:.75rem}
+.dash-side-btn{
+	display:flex; align-items:center; justify-content:center; gap:.5rem;
+	width:100%; padding:.6rem .7rem; border-radius:11px;
+	border:1px solid var(--line); background:rgba(255,255,255,.04);
+	color:#FFFFFF; font-family:var(--font-d); font-weight:600; font-size:.82rem;
+	text-align:center; text-decoration:none; cursor:pointer;
+	transition:border-color .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+}
+.dash-side-btn:hover{border-color:rgba(245,163,10,.5); background:rgba(245,163,10,.08); color:#fff}
+.dash-side-btn--danger{border-color:rgba(255,92,92,.4); color:#ff9a9a}
+.dash-side-btn--danger:hover{border-color:var(--bad); background:rgba(255,92,92,.12); color:#fff}
 
 /* collapsed (desktop) */
 .dash-app.is-collapsed{grid-template-columns:var(--side-w-collapsed) 1fr}
@@ -70,6 +82,7 @@
 .dash-app.is-collapsed .dash-link .dash-link__badge{position:absolute; top:4px; right:4px; margin:0}
 .dash-app.is-collapsed .dash-brand{justify-content:center; padding:0}
 .dash-app.is-collapsed .dash-usercard{justify-content:center}
+.dash-app.is-collapsed .dash-side-actions{display:none}
 
 /* ---------- Main + topbar ---------- */
 .dash-main{display:flex; flex-direction:column; min-width:0}
@@ -190,6 +203,15 @@ table.dtable tbody tr:last-child td{border-bottom:0}
 .cell-sub{display:block; color:var(--muted); font-size:.76rem}
 .avatar-sm{width:34px; height:34px; border-radius:50%; object-fit:cover; display:inline-block; vertical-align:middle}
 .avatar-md{width:52px; height:52px; border-radius:50%; object-fit:cover}
+.avatar-initial{
+	display:inline-grid; place-items:center; flex:0 0 auto;
+	background:var(--grad); color:#14100a;
+	font-family:var(--font-d); font-weight:700; line-height:1;
+	text-transform:uppercase; letter-spacing:.02em;
+	border:0; vertical-align:middle;
+}
+.avatar-sm.avatar-initial{font-size:.82rem}
+.avatar-md.avatar-initial{font-size:1.15rem}
 .cell-user{display:flex; align-items:center; gap:.65rem}
 
 /* ---------- Forms ---------- */
@@ -354,8 +376,10 @@ input[type="date"].dash-input,.dash-field input[type="date"]{color-scheme:dark}
 	.dash-app .dash-link{justify-content:center; padding:.8rem}
 	.dash-app .dash-brand{justify-content:center; padding:0}
 	.dash-app .dash-usercard{justify-content:center}
+	.dash-app .dash-side-actions{display:none}
 	.dash-app.is-expanded{grid-template-columns:var(--side-w) 1fr}
 	.dash-app.is-expanded .dash-label,.dash-app.is-expanded .dash-nav__label,.dash-app.is-expanded .dash-brand__tag,.dash-app.is-expanded .dash-usercard span,.dash-app.is-expanded .dash-usercard strong{display:block}
+	.dash-app.is-expanded .dash-side-actions{display:flex}
 	.dash-app.is-expanded .dash-link{justify-content:flex-start; padding:.72rem .85rem}
 	.dash-app.is-expanded .dash-brand{justify-content:flex-start; padding:0 1.35rem}
 }
@@ -364,6 +388,7 @@ input[type="date"].dash-input,.dash-field input[type="date"]{color-scheme:dark}
 	.dash-sidebar{position:fixed; left:0; top:0; width:min(290px, 84vw); transform:translateX(-104%); box-shadow:0 0 60px rgba(0,0,0,.6)}
 	.dash-sidebar.is-open{transform:none}
 	.dash-sidebar .dash-label,.dash-sidebar .dash-nav__label,.dash-sidebar .dash-brand__tag,.dash-sidebar .dash-usercard span,.dash-sidebar .dash-usercard strong{display:block !important}
+	.dash-sidebar .dash-side-actions{display:flex !important}
 	.dash-sidebar .dash-link{justify-content:flex-start !important; padding:.72rem .85rem !important}
 	.dash-search{display:none}
 	.auth-wrap{grid-template-columns:1fr}

@@ -539,24 +539,55 @@
 					if (!ok) valid = false;
 				});
 
+				var nm = $('#bfName'), nmErr = $('#bfNameError');
+				if (nm && !/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(nm.value.trim())) {
+					if (nmErr) nmErr.style.display = 'block';
+					nm.classList.add('is-invalid');
+					valid = false;
+				}
+				var ph = $('#bfPhone'), phErr = $('#bfPhoneError');
+				if (ph && !/^[0-9]{7,20}$/.test(ph.value.trim())) {
+					if (phErr) phErr.style.display = 'block';
+					ph.classList.add('is-invalid');
+					valid = false;
+				}
+
 				if (!valid) {
 					if (hasGSAP && !reduced) gsap.fromTo(form, { x: -8 }, { x: 0, duration: 0.5, ease: 'elastic.out(1,0.35)' });
 					return;
 				}
 
-				var success = $('#formSuccess');
-				if (success) {
-					success.classList.add('is-visible');
-					if (hasGSAP && !reduced) gsap.from(success, { y: 16, autoAlpha: 0, duration: 0.6, ease: 'power3.out' });
-				}
-				form.reset();
+				if (nmErr) nmErr.style.display = 'none';
+				if (phErr) phErr.style.display = 'none';
 				$$('[required]', form).forEach(function (f) { f.classList.remove('is-invalid'); });
+				var success = $('#formSuccess');
+				if (success) success.classList.add('is-visible');
+				window.location.href = '404.html';
 			});
 
 			$$('[required]', form).forEach(function (f) {
 				f.addEventListener('input', function () { f.classList.remove('is-invalid'); });
 				f.addEventListener('change', function () { f.classList.remove('is-invalid'); });
 			});
+
+			var nameInput = $('#bfName');
+			if (nameInput) {
+				nameInput.addEventListener('input', function () {
+					var cleaned = this.value.replace(/[^A-Za-z ]/g, '');
+					if (cleaned !== this.value) this.value = cleaned;
+					var e = $('#bfNameError');
+					if (e) e.style.display = 'none';
+				});
+			}
+			var phoneInput = $('#bfPhone');
+			if (phoneInput) {
+				phoneInput.addEventListener('input', function () {
+					var cleaned = this.value.replace(/[^0-9]/g, '');
+					if (cleaned !== this.value) this.value = cleaned;
+					var e = $('#bfPhoneError');
+					if (e) e.style.display = 'none';
+				});
+			}
 		}
 
 		var news = $('#newsForm');
@@ -581,9 +612,10 @@
 					return;
 				}
 				if (error) error.style.display = 'none';
+				if (msg) msg.textContent = '';
 				e.preventDefault();
-				if (msg) msg.textContent = 'Subscribed — welcome to the studio notes.';
 				news.reset();
+				window.location.href = '404.html';
 			});
 		}
 	}

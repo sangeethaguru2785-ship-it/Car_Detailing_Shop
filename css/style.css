@@ -298,9 +298,10 @@ button{font-family:inherit}
 .check-list li{position:relative; padding-left:2.1rem; color:#FFFFFF; font-size:.97rem}
 .check-list li::before{
 	content:""; position:absolute; left:0; top:.4em; width:17px; height:17px;
-	border-radius:50%; background:var(--grad);
-	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%2314100a' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round' d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
-	background-repeat:no-repeat; background-position:center; background-size:11px;
+	border-radius:50%;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%2314100a' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round' d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px no-repeat,
+		var(--grad);
 }
 .about__actions{display:flex; flex-wrap:wrap; align-items:center; gap:1.6rem}
 
@@ -580,6 +581,9 @@ button{font-family:inherit}
 }
 .booking__info{padding:clamp(2rem,4vw,3.6rem); border-right:1px solid var(--line)}
 .booking__form-col{padding:clamp(2rem,4vw,3.6rem)}
+.booking-form__head{margin-bottom:1.7rem}
+.booking-form__title{font-family:var(--font-d); font-weight:600; font-size:clamp(1.25rem,2.1vw,1.65rem); margin-bottom:.45rem; color:var(--text)}
+.booking-form__subtitle{color:var(--muted); font-size:.95rem; max-width:48ch; margin-bottom:0}
 .contact-list{display:grid; gap:1.5rem; margin-top:2.4rem}
 .contact-list li{display:flex; gap:1rem; align-items:flex-start}
 .contact-list__icon{
@@ -640,7 +644,7 @@ input::placeholder, textarea::placeholder, select::placeholder,
 	font-weight:600; margin-bottom:1.4rem;
 }
 .footer__links{display:grid; gap:.7rem}
-.footer__links a{color:var(--muted); font-size:.94rem; display:inline-block; transition:all .3s var(--ease)}
+.footer__links a{color:var(--muted); font-size:.94rem; display:inline-block; text-decoration:underline; text-underline-offset:.2em; transition:all .3s var(--ease)}
 .footer__links a:hover{color:#fff; transform:translateX(5px)}
 .footer__news-text{color:var(--muted); font-size:.93rem; margin-bottom:1.1rem}
 .footer__news{display:flex; gap:.6rem}

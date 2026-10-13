@@ -187,6 +187,29 @@
 .faq__body p{color:var(--muted); font-size:.96rem; max-width:78ch}
 .faq__body p + p{margin-top:.8rem}
 
+/* FAQ support card (right column) */
+.faq-support{
+	position:relative; isolation:isolate; overflow:hidden; margin-top:1.6rem;
+	display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+	gap:1.4rem 2rem; padding:clamp(1.4rem,2.6vw,1.9rem) clamp(1.4rem,2.6vw,2rem);
+	background:linear-gradient(160deg, var(--surface-2), var(--surface));
+	border:1px solid var(--line); border-radius:var(--radius);
+	transition:border-color .45s var(--ease), transform .45s var(--ease);
+}
+.faq-support:hover{border-color:rgba(245,163,10,.45); transform:translateY(-4px)}
+.faq-support::before{
+	content:""; position:absolute; z-index:-1; width:300px; height:300px; right:-130px; top:-150px;
+	background:radial-gradient(circle, rgba(245,163,10,.22), transparent 68%);
+}
+.faq-support__main{display:flex; align-items:flex-start; gap:1.1rem; flex:1 1 320px; min-width:0}
+.faq-support__icon{
+	flex:0 0 48px; width:48px; height:48px; border-radius:14px; display:grid; place-items:center;
+	background:rgba(245,163,10,.1); border:1px solid rgba(245,163,10,.3); color:var(--accent);
+}
+.faq-support h3{font-size:1.06rem; margin-bottom:.35rem}
+.faq-support p{color:var(--muted); font-size:.92rem; max-width:46ch}
+.faq-support__actions{display:flex; flex-wrap:wrap; gap:.8rem}
+
 /* ---------- Gallery filters ---------- */
 .filter-bar{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-bottom:2.6rem}
 .filter-btn{
@@ -252,6 +275,7 @@
 }
 .info-card:hover .info-card__icon{background:var(--grad); color:#14100a; transform:rotate(-7deg)}
 .info-card h3{font-size:1.02rem; margin-bottom:.5rem}
+.info-card__subtitle{color:var(--accent); font-size:.85rem; font-weight:600; letter-spacing:.02em; margin-bottom:.6rem}
 .info-card p{color:var(--muted); font-size:.93rem}
 .info-card p a{
 	color:var(--text); border-bottom:1px solid rgba(255,255,255,.25);
@@ -293,39 +317,40 @@
 	flex-grow:1;
 }
 
-/* stylised map (no external service) */
-.map-card{
-	position:relative; overflow:hidden; min-height:340px; border:1px solid var(--line);
-	border-radius:var(--radius); isolation:isolate;
-	background:
-		radial-gradient(circle at 32% 42%, rgba(245,163,10,.14), transparent 58%),
-		linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0/52px 52px,
-		linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0/52px 52px,
-		var(--surface);
+/* embedded Google Map */
+.map-embed{
+	position:relative; height:100%; min-height:360px; isolation:isolate;
+	border:1px solid var(--line); border-radius:var(--radius);
+	overflow:hidden; background:var(--surface);
+	box-shadow:0 42px 90px -60px rgba(0,0,0,.95);
 }
-.map-card::before,.map-card::after{
-	content:""; position:absolute; background:rgba(255,255,255,.07); z-index:-1;
+.map-embed::after{
+	content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+	border-radius:inherit;
+	box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), inset 0 0 80px 0 rgba(6,7,9,.5);
 }
-.map-card::before{left:-10%; right:-10%; top:52%; height:26px; transform:rotate(-8deg)}
-.map-card::after{top:-10%; bottom:-10%; left:38%; width:22px; transform:rotate(6deg)}
-.map-card__pin{
-	position:absolute; left:46%; top:47%; transform:translate(-50%,-50%);
-	width:24px; height:24px; border-radius:50%; background:var(--grad);
-	box-shadow:0 0 0 6px rgba(245,163,10,.2), 0 0 34px rgba(245,163,10,.75);
+.map-embed__frame{
+	display:block; width:100%; height:100%; min-height:360px; border:0;
+	filter:invert(.92) hue-rotate(180deg) saturate(.82) brightness(.95) contrast(.94);
+	transition:filter .6s var(--ease);
 }
-.map-card__pin::after{
-	content:""; position:absolute; inset:-14px; border-radius:50%;
-	border:1px solid rgba(245,163,10,.55); animation:pinPulse 2.6s var(--ease) infinite;
-}
-@keyframes pinPulse{0%{transform:scale(.7); opacity:1}100%{transform:scale(1.7); opacity:0}}
-.map-card__label{
-	position:absolute; left:22px; bottom:22px; right:22px;
+.map-embed:hover .map-embed__frame{filter:none}
+.map-embed__label{
+	position:absolute; left:22px; bottom:22px; right:22px; z-index:2; pointer-events:none;
 	background:rgba(8,9,11,.86); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
 	border:1px solid var(--line); border-radius:16px; padding:1rem 1.2rem;
 	display:flex; flex-wrap:wrap; gap:.6rem 1.2rem; align-items:center; justify-content:space-between;
 }
-.map-card__label strong{display:block; font-family:var(--font-d); font-size:.98rem}
-.map-card__label span{display:block; color:var(--muted); font-size:.86rem}
+.map-embed__label strong{display:block; font-family:var(--font-d); font-size:.98rem}
+.map-embed__label > div span{display:block; color:var(--muted); font-size:.86rem}
+
+/* arrow-marker list (service area) */
+.check-list.check-list--arrow li::before{
+	border-radius:50%;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314100a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / 12px no-repeat,
+		var(--grad);
+}
 
 /* hours table */
 .hours-list{display:grid; gap:.75rem; margin-top:1.4rem}
@@ -351,6 +376,7 @@
 	background:linear-gradient(160deg, var(--surface-2), var(--surface));
 	border:1px solid var(--line); border-radius:var(--radius);
 	padding:clamp(2rem,4vw,3.2rem); position:relative; overflow:hidden;
+	display:flex; flex-direction:column;
 }
 .quote-block::before{
 	content:"“"; position:absolute; top:-.18em; left:.2em;
@@ -358,13 +384,13 @@
 }
 .quote-block p{
 	position:relative; font-family:var(--font-d); font-size:clamp(1.1rem,2vw,1.5rem);
-	line-height:1.5; letter-spacing:-.015em; color:#FFFFFF;
+	line-height:1.5; letter-spacing:-.015em; color:#FFFFFF; margin-bottom:1.6rem;
 }
 .quote-block footer{
-	position:relative; margin-top:1.6rem; display:flex; align-items:center; gap:.9rem;
+	position:relative; margin-top:auto; display:flex; align-items:center; gap:.9rem;
 	border-top:1px solid var(--line); padding-top:1.3rem;
 }
-.quote-block footer img{width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid rgba(245,163,10,.6)}
+.quote-block footer img{flex:0 0 52px; width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid rgba(245,163,10,.6)}
 .quote-block footer strong{display:block; font-family:var(--font-d); font-size:.98rem}
 .quote-block footer span{display:block; font-size:.84rem; color:var(--muted)}
 .quote-block footer .q-badge{
@@ -423,10 +449,117 @@
 	.page-hero{padding-top:calc(var(--nav-h) + 46px)}
 	.cta-band__actions{width:100%}
 	.cta-band__actions .btn{flex:1 1 auto}
-	.map-card__label{left:14px; right:14px; bottom:14px; padding:.9rem 1rem}
+	.map-embed,.map-embed__frame{min-height:300px}
+	.map-embed__label{left:14px; right:14px; bottom:14px; padding:.9rem 1rem}
 }
 @media (max-width:575px){
 	.team-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 	.filter-btn{flex:1 1 auto; text-align:center}
 	.quote-block::before{font-size:6rem}
+	.faq-support__main{flex:1 1 100%}
+	.faq-support__actions{width:100%}
+	.faq-support__actions .btn{flex:1 1 auto}
+}
+
+/* =========================================================
+   Unified card interaction: subtle lift + themed glow outline
+   Uses the `translate` longhand (not `transform`) so it stays
+   independent from GSAP entrance animations, which write inline
+   `transform` on these elements. `transform:none` neutralises the
+   legacy translateY hover lifts so the result stays consistent.
+   ========================================================= */
+.service-card,
+.price-card,
+.value-card,
+.team-card,
+.cert-card,
+.info-card,
+.faq__item,
+.faq-support,
+.addon,
+.quote-block,
+.gift-card,
+.gallery__item,
+.map-embed{
+	transition:translate .42s var(--ease), box-shadow .5s var(--ease),
+		border-color .42s var(--ease), background .42s var(--ease);
+}
+
+@media (hover:hover) and (pointer:fine){
+	.service-card:hover,
+	.price-card:hover,
+	.value-card:hover,
+	.team-card:hover,
+	.cert-card:hover,
+	.info-card:hover,
+	.faq__item:hover,
+	.faq-support:hover,
+	.addon:hover,
+	.quote-block:hover,
+	.gift-card:hover,
+	.gallery__item:hover,
+	.map-embed:hover{
+		translate:0 -6px !important;
+		transform:none;
+		border-color:rgba(245,163,10,.55);
+		box-shadow:
+			0 24px 48px -26px rgba(0,0,0,.85),
+			0 0 0 1px rgba(245,163,10,.5),
+			0 0 26px -6px rgba(245,163,10,.5),
+			0 0 60px -18px rgba(255,106,43,.45);
+	}
+}
+
+@media (prefers-reduced-motion: reduce){
+	.service-card,
+	.price-card,
+	.value-card,
+	.team-card,
+	.cert-card,
+	.info-card,
+	.faq__item,
+	.faq-support,
+	.addon,
+	.quote-block,
+	.gift-card,
+	.gallery__item,
+	.map-embed{transition:none}
+	.service-card:hover,
+	.price-card:hover,
+	.value-card:hover,
+	.team-card:hover,
+	.cert-card:hover,
+	.info-card:hover,
+	.faq__item:hover,
+	.faq-support:hover,
+	.addon:hover,
+	.quote-block:hover,
+	.gift-card:hover,
+	.gallery__item:hover,
+	.map-embed:hover{translate:none !important; transform:none}
+}
+
+/* Cards whose parent clips overflow (.process__viewport/.stats-row):
+   use an inset glow ring instead of an outward glow + lift. */
+.process-step,
+.stats-row .stat{
+	transition:box-shadow .5s var(--ease), border-color .42s var(--ease),
+		background .42s var(--ease);
+}
+
+@media (hover:hover) and (pointer:fine){
+	.process-step:hover,
+	.stats-row .stat:hover{
+		border-color:rgba(245,163,10,.55);
+		box-shadow:
+			inset 0 0 0 1px rgba(245,163,10,.42),
+			inset 0 0 46px -16px rgba(245,163,10,.42);
+	}
+}
+
+@media (prefers-reduced-motion: reduce){
+	.process-step,
+	.stats-row .stat{transition:none}
+	.process-step:hover,
+	.stats-row .stat:hover{box-shadow:inset 0 0 0 1px rgba(245,163,10,.42)}
 }

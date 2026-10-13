@@ -24,22 +24,64 @@ window.Auth = (function () {
 
 	function logout() {
 		DB.logout();
+		try {
+			localStorage.removeItem('userName');
+			localStorage.removeItem('userEmail');
+			localStorage.removeItem('userRole');
+		} catch (e) {}
 		location.href = 'login.html';
+	}
+
+	/* Redirect every dashboard button/link to the 404 page, except the
+	   sidebar, header, Logout ([data-logout]) and Go to Home ([data-home]). */
+	var navGuardBound = false;
+	function bindNavGuard() {
+		if (navGuardBound) return;
+		navGuardBound = true;
+		document.addEventListener('click', function (e) {
+			var t = e.target && e.target.closest && e.target.closest('a, button, [role="button"], [role="link"], [role="tab"], input[type="submit"], input[type="button"], input[type="reset"], select, [onclick]');
+			if (!t) return;
+			if (t.closest('.dash-sidebar')) return;
+			if (t.closest('.dash-topbar')) return;
+			if (t.closest('[data-logout]')) return;
+			if (t.closest('[data-home]')) return;
+			e.preventDefault();
+			e.stopPropagation();
+			location.href = '404.html';
+		}, true);
 	}
 
 	/* Populate topbar + sidebar user card, wire profile menu + logout. */
 	function mountChrome(user) {
+		bindNavGuard();
 		function txt(id, v) { var n = document.getElementById(id); if (n) n.textContent = v; }
-		var first = (user.name || '').split(' ')[0];
+		var first = ((user.name || 'User').trim().split(/\s+/)[0]) || 'User';
 		txt('sideUserName', user.name);
 		txt('sideUserRole', user.title || (user.role === 'admin' ? 'Administrator' : 'Customer'));
 		txt('topUserName', user.name);
 		txt('topUserRole', user.role === 'admin' ? 'Administrator' : 'Customer');
 		txt('menuName', user.name);
 		txt('menuEmail', user.email);
-		var av = document.getElementById('topAvatar'); if (av) av.src = user.avatar || 'images/avatar-1.webp';
-		var sav = document.getElementById('sideAvatar'); if (sav) sav.src = user.avatar || 'images/avatar-1.webp';
+		var av = document.getElementById('topAvatar');
+		if (av) { av.src = user.avatar || 'images/avatar-1.webp'; av.setAttribute('data-name', user.name || ''); av.setAttribute('onerror', 'UI.avatarError(this)'); }
+		var sav = document.getElementById('sideAvatar');
+		if (sav) {
+			if (sav.tagName === 'IMG') {
+				sav.src = user.avatar || 'images/avatar-1.webp';
+				sav.alt = user.name || '';
+				sav.setAttribute('data-name', user.name || '');
+				sav.setAttribute('onerror', 'UI.avatarError(this)');
+			} else {
+				var ini = (window.UI && UI.initial) ? UI.initial(user.name) : ((user.name || 'U').trim().charAt(0).toUpperCase());
+				sav.textContent = ini || 'U';
+			}
+		}
 		var greet = document.getElementById('greetName'); if (greet) greet.textContent = first;
+		try {
+			if (user.name) localStorage.setItem('userName', user.name);
+			if (user.role) localStorage.setItem('userRole', user.role);
+			if (user.email) localStorage.setItem('userEmail', user.email);
+		} catch (e) {}
 
 		var btn = document.getElementById('profileBtn');
 		var menu = document.getElementById('profileMenu');

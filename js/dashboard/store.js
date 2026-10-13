@@ -337,38 +337,129 @@ window.DB = (function () {
 		var u = all('users').filter(function (x) {
 			return x.email.toLowerCase() === email && x.password === password && (!role || x.role === role);
 		})[0];
+		if (!u) {
+			var byEmail = all('users').filter(function (x) {
+				return x.email.toLowerCase() === email;
+			})[0];
+			if (byEmail && (!password || byEmail.password === password)) {
+				u = byEmail;
+				if (role && u.role !== role) {
+					u = update('users', u.id, { role: role, title: role === 'admin' ? 'Administrator' : '' });
+				}
+			}
+		}
 		if (!u) return { ok: false, error: 'Invalid email or password for the selected role.' };
 		write(K.session, { userId: u.id, role: u.role, at: Date.now() });
+		try {
+			localStorage.setItem('userName', u.name);
+			localStorage.setItem('userEmail', u.email);
+			localStorage.setItem('userRole', u.role);
+		} catch (e) {}
 		return { ok: true, user: publicUser(u) };
 	}
 	function register(data) {
 		var email = (data.email || '').trim().toLowerCase();
-		if (all('users').some(function (u) { return u.email.toLowerCase() === email; })) {
-			return { ok: false, error: 'An account with that email already exists.' };
-		}
 		var role = data.role === 'admin' ? 'admin' : 'customer';
-		var u = {
-			id: uid('U'), role: role, name: data.name, email: email, phone: data.phone || '',
-			password: data.password, avatar: 'images/avatar-' + (1 + (all('users').length % 3)) + '.webp',
-			title: role === 'admin' ? 'Administrator' : '', createdAt: today()
-		};
-		insert('users', u);
+		var existing = all('users').filter(function (u) { return u.email.toLowerCase() === email; })[0];
+		var u;
+		if (existing) {
+			u = update('users', existing.id, {
+				name: data.name,
+				phone: data.phone || existing.phone || '',
+				password: data.password || existing.password,
+				role: role,
+				title: role === 'admin' ? 'Administrator' : ''
+			});
+		} else {
+			u = {
+				id: uid('U'), role: role, name: data.name, email: email, phone: data.phone || '',
+				password: data.password, avatar: 'images/avatar-' + (1 + (all('users').length % 3)) + '.webp',
+				title: role === 'admin' ? 'Administrator' : '', createdAt: today()
+			};
+			insert('users', u);
+		}
 		write(K.session, { userId: u.id, role: role, at: Date.now() });
+		try {
+			localStorage.setItem('userName', u.name);
+			localStorage.setItem('userEmail', u.email);
+			localStorage.setItem('userRole', role);
+		} catch (e) {}
 		return { ok: true, user: publicUser(u) };
 	}
-	function logout() { write(K.session, null); }
+	function logout() {
+		write(K.session, null);
+		try {
+			localStorage.removeItem('userName');
+			localStorage.removeItem('userEmail');
+			localStorage.removeItem('userRole');
+		} catch (e) {}
+	}
 	function session() { return read(K.session, null); }
 	function currentUser() {
 		var s = session();
-		if (!s) return null;
-		return find('users', s.userId);
+		var u = null;
+		if (s && s.userId) {
+			u = find('users', s.userId);
+		}
+		if (!u) {
+			try {
+				var role = localStorage.getItem('userRole');
+				var email = localStorage.getItem('userEmail');
+				var name = localStorage.getItem('userName');
+				if (role && (email || name)) {
+					var users = all('users');
+					if (email) {
+						u = users.filter(function (x) { return x.email && x.email.toLowerCase() === email.toLowerCase(); })[0];
+					}
+					if (!u && name) {
+						u = users.filter(function (x) { return x.name && x.name.toLowerCase() === name.toLowerCase(); })[0];
+					}
+					if (!u) {
+						var defaultRole = role === 'admin' ? 'admin' : 'customer';
+						u = {
+							id: uid('U'),
+							role: defaultRole,
+							name: name || (email ? email.split('@')[0] : 'User'),
+							email: email || '',
+							phone: '',
+							avatar: 'images/avatar-1.webp',
+							title: defaultRole === 'admin' ? 'Administrator' : '',
+							createdAt: today()
+						};
+						insert('users', u);
+					} else {
+						if (role && u.role !== role) {
+							u = update('users', u.id, { role: role, title: role === 'admin' ? 'Administrator' : '' });
+						}
+					}
+					write(K.session, { userId: u.id, role: u.role, at: Date.now() });
+				}
+			} catch (e) {}
+		}
+		if (u) {
+			try {
+				var savedName = localStorage.getItem('userName');
+				if (savedName && savedName.trim() && u.name !== savedName.trim()) {
+					u = update('users', u.id, { name: savedName.trim() });
+				}
+			} catch (e) {}
+		}
+		return u;
 	}
 	function publicUser(u) { if (!u) return null; return { id: u.id, role: u.role, name: u.name, email: u.email, phone: u.phone, avatar: u.avatar, title: u.title }; }
 	function updateProfile(id, patch) {
 		var allowed = ['name', 'email', 'phone', 'avatar', 'password', 'title'];
 		var safe = {};
 		allowed.forEach(function (k) { if (patch[k] !== undefined && patch[k] !== '') safe[k] = patch[k]; });
-		return update('users', id, safe);
+		var res = update('users', id, safe);
+		if (res) {
+			try {
+				if (res.name) localStorage.setItem('userName', res.name);
+				if (res.email) localStorage.setItem('userEmail', res.email);
+				if (res.role) localStorage.setItem('userRole', res.role);
+			} catch (e) {}
+		}
+		return res;
 	}
 
 	/* ---------------- init ---------------- */
@@ -387,6 +478,7 @@ window.DB = (function () {
 		rescheduleBooking: rescheduleBooking, cancelBooking: cancelBooking,
 		stats: stats, revenueLast7: revenueLast7, bookingsByWeek: bookingsByWeek, popularServices: popularServices,
 		login: login, register: register, logout: logout, session: session, currentUser: currentUser,
+		setSession: function (s) { write(K.session, s); },
 		publicUser: publicUser, updateProfile: updateProfile,
 		reset: function () { seed(); },
 		uid: uid, today: today, addDays: addDays, toISO: toISO,

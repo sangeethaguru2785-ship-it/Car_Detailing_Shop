@@ -63,7 +63,7 @@
 				<h1 class="page-hero__title" data-split data-anim="fade-up">Let's talk about your car.</h1>
 				<p class="page-hero__lead" data-anim="fade-up">Request a slot online, call the bay directly, or just drop in during opening hours — someone who works on cars will answer.</p>
 				<div class="page-hero__actions" data-anim="fade-up">
-					<a href="#booking" class="btn btn-accent" data-magnetic>Request an appointment</a>
+					<a href="404.html" class="btn btn-accent" data-magnetic>Request an appointment</a>
 					<a href="tel:+14085550142" class="btn btn-ghost">+1&nbsp;(408)&nbsp;555&#8209;0142</a>
 				</div>
 				<nav class="crumbs" aria-label="Breadcrumb" data-anim="fade-up">
@@ -75,12 +75,18 @@
 		<!-- ============ QUICK CONTACT ============ -->
 		<section class="section">
 			<div class="container">
+				<div class="section-head section-head--center" data-anim="fade-up">
+					<span class="eyebrow"><i></i>Quick contact</span>
+					<h2 class="section-title" data-split>Three easy ways to reach us.</h2>
+					<p class="section-text">Drop by the studio, call the bay, or send a note — whichever suits, a real person replies.</p>
+				</div>
 				<div class="contact-grid" data-stagger>
 					<article class="info-card">
 						<div class="info-card__icon">
 							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
 						</div>
 						<h3>Visit the studio</h3>
+						<p class="info-card__subtitle">Walk in or reserve a bay ahead of time.</p>
 						<p>2140 Meridian Ave, Unit 7<br>San Jose, CA 95112</p>
 					</article>
 
@@ -89,7 +95,8 @@
 							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5.5C4 4.7 4.7 4 5.5 4h2.2c.7 0 1.3.5 1.4 1.2l.5 2.6c.1.6-.1 1.2-.6 1.5l-1.3.9a12 12 0 0 0 5.1 5.1l.9-1.3c.4-.5 1-.7 1.5-.6l2.6.5c.7.1 1.2.7 1.2 1.4v2.2c0 .8-.7 1.5-1.5 1.5C10.7 20 4 13.3 4 5.5Z"/></svg>
 						</div>
 						<h3>Call or text</h3>
-						<p><a href="tel:+14085550142">+1&nbsp;(408)&nbsp;555&#8209;0142</a><br>Mon–Fri, 8:00 – 18:00</p>
+						<p class="info-card__subtitle">Straight through to a technician on the floor.</p>
+						<p><a href="404.html">+1&nbsp;(408)&nbsp;555&#8209;0142</a><br>Mon–Fri, 8:00 – 18:00</p>
 					</article>
 
 					<article class="info-card">
@@ -97,6 +104,7 @@
 							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
 						</div>
 						<h3>Email the studio</h3>
+						<p class="info-card__subtitle">Quotes, fleet work and aftercare questions.</p>
 						<p><a href="mailto:studio@stacklyautospa.com">studio@stacklyautospa.com</a><br>Replied within one business hour</p>
 					</article>
 				</div>
@@ -138,15 +146,21 @@
 						</div>
 
 						<div class="col-lg-7 booking__form-col">
+							<div class="booking-form__head" data-anim="fade-up">
+								<h3 class="booking-form__title">Request an appointment</h3>
+								<p class="booking-form__subtitle">Fill in the form below — no payment required to reserve your bay.</p>
+							</div>
 							<form class="booking-form" id="bookingForm" novalidate data-anim="fade-up">
 								<div class="row g-3">
 									<div class="col-md-6">
 										<label class="form-label" for="bfName">Full name</label>
-										<input type="text" class="form-control" id="bfName" placeholder="Alex Morgan" required>
+										<input type="text" class="form-control" id="bfName" placeholder="Alex Morgan" pattern="[A-Za-z ]{2,}" title="Please use letters only (no numbers or special characters)." required>
+										<small class="form-error-message" id="bfNameError" style="display:none; color:#ff5c5c; font-size:0.85rem; margin-top:0.5rem;">Name can contain only letters and spaces — no numbers or special characters.</small>
 									</div>
 									<div class="col-md-6">
 										<label class="form-label" for="bfPhone">Phone</label>
-										<input type="tel" class="form-control" id="bfPhone" placeholder="(408) 555-0100" required>
+										<input type="tel" class="form-control" id="bfPhone" placeholder="4085550100" pattern="[0-9]{7,20}" title="Please enter digits only." required>
+										<small class="form-error-message" id="bfPhoneError" style="display:none; color:#ff5c5c; font-size:0.85rem; margin-top:0.5rem;">Phone number must contain digits only (7–20 digits).</small>
 									</div>
   									<div class="col-md-6">
  										<label class="form-label" for="bfEmail">Email</label>
@@ -206,6 +220,7 @@
 			<div class="process__head container">
 				<span class="eyebrow" data-anim="fade-up">What happens next</span>
 				<h2 class="section-title" data-split data-anim="fade-up">After you hit send.</h2>
+				<p class="section-text" data-anim="fade-up">From your first message to keys-in-hand — here's exactly how your booking moves forward, with a real person on it at every step.</p>
 			</div>
 
 			<div class="process__viewport">
@@ -314,9 +329,15 @@
 			<div class="container">
 				<div class="row g-5 align-items-stretch">
 					<div class="col-lg-7">
-						<div class="map-card" data-anim="fade-up" role="img" aria-label="Stylised map showing the STACKLY Auto Spa studio location">
-							<span class="map-card__pin"></span>
-							<div class="map-card__label">
+						<div class="map-embed" data-anim="fade-up">
+							<iframe
+								class="map-embed__frame"
+								title="Google Map showing STACKLY Auto Spa at 2140 Meridian Ave, Unit 7, San Jose, CA 95112"
+								src="https://www.google.com/maps?q=2140%20Meridian%20Ave%2C%20San%20Jose%2C%20CA%2095112&amp;output=embed"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+								allowfullscreen></iframe>
+							<div class="map-embed__label">
 								<div>
 									<strong>STACKLY Auto Spa</strong>
 									<span>2140 Meridian Ave, Unit 7 · San Jose, CA 95112</span>
@@ -326,7 +347,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-5">
+					<div class="col-lg-5 d-flex flex-column justify-content-center">
 						<span class="eyebrow" data-anim="fade-up">Getting here</span>
 						<h2 class="section-title" data-split data-anim="fade-up">Easy to find, easier to park.</h2>
 						<p class="section-text" data-anim="fade-up">We're two blocks north of the freeway, with six dedicated bays out front — pull up to the orange bollards and we'll take it from there.</p>
@@ -339,8 +360,8 @@
 				</ul>
 
 						<div class="mt-4 d-flex flex-wrap gap-3" data-anim="fade-up">
-							<a href="#booking" class="btn btn-accent px-5" data-magnetic>Book a slot</a>
-							<a href="mailto:studio@stacklyautospa.com" class="btn btn-ghost px-5">Email us</a>
+							<a href="404.html" class="btn btn-accent px-5" data-magnetic>Book a slot</a>
+							<a href="404.html" class="btn btn-ghost px-5">Email us</a>
 						</div>
 					</div>
 				</div>
@@ -361,7 +382,7 @@
 				<div class="row g-5 align-items-start">
 					<div class="col-lg-5">
 						<p class="section-text" data-anim="fade-up"><strong class="text-white">We collect from:</strong></p>
-						<ul class="check-list" data-anim="fade-up">
+						<ul class="check-list check-list--arrow" data-anim="fade-up">
 							<li>San Jose — including the downtown core</li>
 							<li>Santa Clara &amp; Sunnyvale</li>
 							<li>Cupertino &amp; Mountain View</li>
@@ -412,17 +433,17 @@
 		<!-- ============ FAQ ============ -->
 		<section class="section" id="faq-contact">
 			<div class="container">
-				<div class="row g-5">
-					<div class="col-lg-5">
+				<div class="row g-5 align-items-stretch">
+					<div class="col-lg-5 d-flex flex-column justify-content-center">
 						<span class="eyebrow" data-anim="fade-up">Before you ask</span>
 						<h2 class="section-title" data-split data-anim="fade-up">Booking, sorted.</h2>
 						<p class="section-text" data-anim="fade-up">The questions the desk answers most often. Anything else — call, and you'll get a technician.</p>
 						<div class="mt-4" data-anim="fade-up">
-							<a href="tel:+14085550142" class="btn btn-accent px-5" data-magnetic>Call the bay</a>
+							<a href="404.html" class="btn btn-accent px-5" data-magnetic>Call the bay</a>
 						</div>
 					</div>
 
-					<div class="col-lg-7">
+					<div class="col-lg-7 d-flex flex-column">
 						<div class="faq" id="faqContact" data-stagger>
 							<div class="faq__item">
 								<h3 class="faq__q mb-0">
@@ -496,6 +517,22 @@
 								</div>
 							</div>
 						</div>
+
+						<article class="faq-support" data-anim="fade-up">
+							<div class="faq-support__main">
+								<span class="faq-support__icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.6-.8L3 21l1.8-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+								</span>
+								<div>
+									<h3>Still have a question?</h3>
+									<p>Talk it through with a technician — no scripts, no call centre. We reply within one business hour on any working day.</p>
+								</div>
+							</div>
+							<div class="faq-support__actions">
+								<a href="404.html" class="btn btn-accent px-4" data-magnetic>Call the bay</a>
+								<a href="404.html" class="btn btn-ghost px-4">Email us</a>
+							</div>
+						</article>
 					</div>
 				</div>
 			</div>
@@ -519,8 +556,8 @@
 				</ul>
 
 						<div class="mt-4 d-flex flex-wrap gap-3" data-anim="fade-up">
-							<a href="mailto:studio@stacklyautospa.com?subject=Gift%20card%20enquiry" class="btn btn-accent px-5" data-magnetic>Buy a gift card</a>
-							<a href="pricing.html" class="btn btn-ghost px-5">See what it covers</a>
+							<a href="404.html" class="btn btn-accent px-5" data-magnetic>Buy a gift card</a>
+							<a href="404.html" class="btn btn-ghost px-5">See what it covers</a>
 						</div>
 					</div>
 
@@ -551,8 +588,8 @@
 						<p data-anim="fade-up">Call the bay and you'll get a technician, not a call centre. We'll talk through what the paint actually needs.</p>
 					</div>
 					<div class="cta-band__actions" data-anim="fade-up">
-						<a href="tel:+14085550142" class="btn btn-accent btn-lg px-5" data-magnetic>Call&nbsp;+1&nbsp;(408)&nbsp;555&#8209;0142</a>
-						<a href="pricing.html" class="btn btn-ghost btn-lg px-5">See pricing</a>
+						<a href="404.html" class="btn btn-accent btn-lg px-5" data-magnetic>Call&nbsp;+1&nbsp;(408)&nbsp;555&#8209;0142</a>
+						<a href="404.html" class="btn btn-ghost btn-lg px-5">See pricing</a>
 					</div>
 				</div>
 			</div>
@@ -580,10 +617,10 @@
 				<div class="col-6 col-lg-2">
 					<h5>Explore</h5>
 					<ul class="footer__links">
-						<li><a href="about.html">About</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="index.html#process">Process</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
+						<li><a href="404.html">About</a></li>
+						<li><a href="404.html">Services</a></li>
+						<li><a href="404.html">Pricing</a></li>
+						<li><a href="404.html">Gallery</a></li>
 					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
 				</ul>
 				</div>
@@ -591,10 +628,10 @@
 				<div class="col-6 col-lg-2">
 					<h5>Packages</h5>
 					<ul class="footer__links">
-						<li><a href="pricing.html">Essential</a></li>
-						<li><a href="pricing.html">Signature</a></li>
-						<li><a href="pricing.html">Ultimate</a></li>
-						<li><a href="contact.html">Gift cards</a></li>
+						<li><a href="404.html">Essential</a></li>
+						<li><a href="404.html">Signature</a></li>
+						<li><a href="404.html">Ultimate</a></li>
+						<li><a href="404.html">Gift cards</a></li>
 					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
 				</ul>
 				</div>
@@ -602,10 +639,10 @@
 				<div class="col-6 col-lg-2">
 					<h5>Support</h5>
 					<ul class="footer__links">
-						<li><a href="contact.html">Contact</a></li>
-						<li><a href="contact.html">FAQs</a></li>
-						<li><a href="services.html">Warranty</a></li>
-						<li><a href="pricing.html">Financing</a></li>
+						<li><a href="404.html">Contact</a></li>
+						<li><a href="404.html">FAQs</a></li>
+						<li><a href="404.html">Warranty</a></li>
+						<li><a href="404.html">Financing</a></li>
 					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
 				</ul>
 				</div>

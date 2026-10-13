@@ -23,11 +23,6 @@
 		var el = document.querySelector('.dash-nav [href="#' + k + '"] .ico'); if (el) el.innerHTML = NAV_ICONS[k];
 	});
 	$('#burger').innerHTML = I.menu;
-	$('.dash-search .s-ico').innerHTML = I.search;
-	$('#notifBtn .b-ico').innerHTML = I.bell;
-	$('.dash-menu .mi1').innerHTML = I.settings;
-	$('.dash-menu .mi2').innerHTML = I.eye;
-	$('.dash-menu .mi3').innerHTML = I.logout;
 
 	Auth.mountChrome(user);
 
@@ -108,7 +103,7 @@
 				'<td><span class="cell-strong">' + esc(b.id) + '</span><span class="cell-sub">' + DB.fmtDate(b.date) + ' · ' + DB.fmtTime(b.time) + '</span></td>' +
 				'<td><div class="cell-user">' + UI.avatar(c) + '<div><span class="cell-strong">' + esc(c.name) + '</span><span class="cell-sub">' + esc(c.email) + '</span></div></div></td>' +
 				'<td>' + esc(svcNames(b.serviceIds)) + '<span class="cell-sub">' + esc(v.make + ' ' + v.model) + ' · ' + esc(v.reg) + '</span></td>' +
-				'<td>' + (st ? '<span class="cell-user">' + '<img class="avatar-sm" src="' + st.avatar + '" alt="">' + esc(st.name) + '</span>' : '<span class="cell-sub">Unassigned</span>') + '</td>' +
+				'<td>' + (st ? '<span class="cell-user">' + UI.avatar(st) + esc(st.name) + '</span>' : '<span class="cell-sub">Unassigned</span>') + '</td>' +
 				'<td>' + UI.badge(b.status) + '</td>' +
 				'<td>' + money(priceOf(b)) + ' ' + UI.badge(b.paymentStatus) + '</td>' +
 				(compact ? '' : '<td><div class="t-actions">' + bookingActions(b) + '</div></td>') +
@@ -686,7 +681,8 @@
 		if (nr) { nr.textContent = reviews; nr.hidden = !reviews; }
 		var dot = document.getElementById('notifDot'); if (dot) dot.hidden = !(pending + reviews);
 	}
-	document.getElementById('notifBtn').addEventListener('click', function () {
+	var notifBtn = document.getElementById('notifBtn');
+	if (notifBtn) notifBtn.addEventListener('click', function () {
 		var pending = DB.list('bookings').filter(function (b) { return b.status === 'pending'; });
 		var reviews = DB.list('reviews').filter(function (r) { return r.status === 'pending'; });
 		if (!pending.length && !reviews.length) { UI.toast('success', 'All caught up', 'No pending bookings or reviews.'); return; }
@@ -731,7 +727,8 @@
 	overlay.addEventListener('click', closeSidebar);
 
 	// global search
-	document.getElementById('globalSearch').addEventListener('input', function (e) { state.q = e.target.value; render(); });
+	var search = document.getElementById('globalSearch');
+	if (search) search.addEventListener('input', function (e) { state.q = e.target.value; render(); });
 
 	// cross-tab sync
 	window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('stackly_') === 0) render(); });

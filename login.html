@@ -15,11 +15,21 @@
 	<style>
 		body.auth-body { margin:0; background:var(--bg); overflow-x:hidden; }
 		.auth-wrapper { min-height:100vh; min-height:100dvh; display:grid; grid-template-columns:1fr 1fr; position:relative; }
-		.auth-hero { position:relative; display:flex; flex-direction:column; justify-content:center; padding:clamp(40px,6vw,80px); overflow:hidden; }
+		.auth-hero { position:relative; display:flex; flex-direction:column; justify-content:space-between; gap:clamp(22px,3.5vw,44px); padding:clamp(40px,6vw,72px); overflow:hidden; }
 		.auth-hero-bg { position:absolute; inset:0; z-index:-2; }
 		.auth-hero-bg img { width:100%; height:100%; object-fit:cover; }
 		.auth-hero-veil { position:absolute; inset:0; z-index:-1; background:linear-gradient(160deg, rgba(6,7,9,.98) 0%, rgba(6,7,9,.85) 60%, rgba(6,7,9,.6) 100%); }
 		.auth-hero-content { max-width:620px; }
+		.auth-hero-brand { display:inline-flex; align-self:flex-start; }
+		.auth-hero-brand img { height:clamp(38px,4.4vw,52px); width:auto; }
+		.auth-hero-list { list-style:none; padding:0; margin:1.75rem 0 0; display:grid; gap:.8rem; }
+		.auth-hero-list li { display:flex; align-items:center; gap:.7rem; color:#c9ccd4; font-size:.97rem; }
+		.auth-hero-check { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--grad); color:#14100a; flex:0 0 auto; }
+		.auth-hero-check svg { width:12px; height:12px; }
+		.auth-hero-stats { display:flex; gap:clamp(18px,3vw,44px); flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.12); padding-top:clamp(16px,2.4vw,24px); }
+		.auth-hero-stat { display:flex; flex-direction:column; }
+		.auth-hero-stat strong { font-family:var(--font-d); font-size:clamp(1.25rem,2vw,1.7rem); color:#fff; }
+		.auth-hero-stat span { color:var(--muted); font-size:.82rem; }
 		.auth-form-wrapper { display:flex; align-items:center; justify-content:center; padding:clamp(24px,5vw,64px); background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); position:relative; }
 		.auth-form-wrapper::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.02) 1px,transparent 1px); background-size:40px 40px; opacity:.3; pointer-events:none; }
 		.auth-card { width:min(480px,92vw); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:clamp(28px,4vw,48px); box-shadow:0 60px 120px -70px rgba(0,0,0,1); position:relative; animation:fadeInUp .8s ease-out; }
@@ -47,7 +57,7 @@
 		.password-toggle:hover { color:#fff; background:rgba(255,255,255,.08); }
 		.password-toggle svg { width:20px; height:20px; }
 		.auth-home { display:flex; justify-content:center; margin-top:1.25rem; }
-		@media(max-width:991px){ .auth-wrapper{grid-template-columns:1fr;} .auth-hero{min-height:40vh; text-align:center; align-items:center;} .auth-hero-content{text-align:center;} }
+		@media(max-width:991px){ .auth-wrapper{grid-template-columns:1fr;} .auth-hero{min-height:auto; text-align:center; align-items:center; padding:clamp(32px,7vw,56px);} .auth-hero-content{text-align:center;} .auth-hero-brand{align-self:center;} .auth-hero-list,.auth-hero-stats{display:none;} }
 	</style>
 </head>
 <body class="auth-body">
@@ -55,13 +65,23 @@
 		<aside class="auth-hero">
 			<div class="auth-hero-bg"><img src="images/hero-inner.webp" alt="STACKLY Auto Spa Studio"></div>
 			<div class="auth-hero-veil"></div>
+			<a href="index.html" class="auth-hero-brand">
+				<img src="images/logo.webp" alt="STACKLY Auto Spa" class="brand-logo">
+			</a>
 			<div class="auth-hero-content">
-				<a href="index.html" class="navbar-brand mb-4 d-inline-flex">
-					<img src="images/logo.webp" alt="STACKLY Auto Spa" class="brand-logo">
-				</a>
 				<span class="eyebrow"><i></i>Welcome back</span>
 				<h1>Your detail, tracked from bay to handover.</h1>
 				<p>Sign in to manage your bookings, track your vehicle, and access your service history with our premium detailing studio.</p>
+				<ul class="auth-hero-list">
+					<li><span class="auth-hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Track every stage of your detail in real time</li>
+					<li><span class="auth-hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Reschedule, pay and download receipts in one tap</li>
+					<li><span class="auth-hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Your service history and aftercare, always in one place</li>
+				</ul>
+			</div>
+			<div class="auth-hero-stats">
+				<div class="auth-hero-stat"><strong>4.9</strong><span>Average rating</span></div>
+				<div class="auth-hero-stat"><strong>15K+</strong><span>Vehicles detailed</span></div>
+				<div class="auth-hero-stat"><strong>12 yrs</strong><span>Studio experience</span></div>
 			</div>
 		</aside>
 		<main class="auth-form-wrapper">
@@ -94,12 +114,12 @@
 					</div>
 					<div class="auth-field">
 						<label class="auth-label" for="signinPassword">Password</label>
-						<input type="password" id="signinPassword" class="auth-input" placeholder="Enter your password" autocomplete="current-password" required minlength="6">
+						<input type="password" id="signinPassword" class="auth-input" placeholder="Enter your password" autocomplete="current-password" required minlength="8">
 						<button type="button" class="password-toggle" data-toggle="password" aria-label="Show password">
 							<svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
 							<svg class="eye-off-icon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
 						</button>
-						<div class="auth-error">Password must be at least 6 characters.</div>
+						<div class="auth-error">Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a special character.</div>
 					</div>
 					<div class="auth-row">
 						<label class="auth-check">
@@ -108,6 +128,7 @@
 						</label>
 						<a href="404.html" class="auth-link">Forgot Password?</a>
 					</div>
+					<div class="auth-error" id="rememberError" style="display:none;">Please select "Remember Me" to continue.</div>
 					<button type="submit" class="btn btn-accent auth-btn">Sign In</button>
 				</form>
 				<div class="auth-footer">
@@ -120,36 +141,200 @@
 		</main>
 	</div>
 	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+	<script src="js/dashboard/store.js"></script>
 	<script>
-		function validateEmail(el){ var r=/^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/; var err=el.parentElement.querySelector('.email-error'); if(el.value.trim()===''){ if(err)err.style.display='none'; el.classList.remove('is-invalid'); return true; } if(r.test(el.value.trim())){ if(err)err.style.display='none'; el.classList.remove('is-invalid'); return true; } else { if(err)err.style.display='block'; el.classList.add('is-invalid'); return false; } }
-		document.querySelectorAll('.email-input').forEach(function(i){ i.addEventListener('input',function(){validateEmail(this)}); i.addEventListener('keypress',function(e){return /^[A-Za-z0-9@.]*$/.test(e.key)}); });
-		document.querySelectorAll('[data-toggle="password"]').forEach(function(btn){ btn.addEventListener('click',function(){ var input=document.getElementById(this.closest('.auth-field').querySelector('input').id)||this.parentElement.querySelector('input'); if(!input)return; if(input.type==='password'){ input.type='text'; this.querySelector('.eye-icon').style.display='none'; this.querySelector('.eye-off-icon').style.display='block'; } else { input.type='password'; this.querySelector('.eye-icon').style.display='block'; this.querySelector('.eye-off-icon').style.display='none'; } }); });
-				// Role selection
-		document.querySelectorAll('.role-btn').forEach(function(btn){
+		function validateEmail(el, isSubmit){
+			var r = /^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/;
+			var err = el.parentElement.querySelector('.email-error');
+			var val = el.value.trim();
+			if(val === ''){
+				if(isSubmit){
+					if(err) err.style.display = 'block';
+					el.classList.add('is-invalid');
+					return false;
+				}
+				if(err) err.style.display = 'none';
+				el.classList.remove('is-invalid');
+				return true;
+			}
+			if(r.test(val)){
+				if(err) err.style.display = 'none';
+				el.classList.remove('is-invalid');
+				return true;
+			} else {
+				if(err) err.style.display = 'block';
+				el.classList.add('is-invalid');
+				return false;
+			}
+		}
+		document.querySelectorAll('.email-input').forEach(function(i){
+			i.addEventListener('input', function(){ validateEmail(this, false); });
+			i.addEventListener('keypress', function(e){ return /^[A-Za-z0-9@.]*$/.test(e.key); });
+		});
+		document.querySelectorAll('[data-toggle="password"]').forEach(function(btn){
 			btn.addEventListener('click', function(){
-				document.querySelectorAll('.role-btn').forEach(function(b){ b.classList.remove('is-active'); b.style.background='transparent'; b.style.color='#fff'; });
-				this.classList.add('is-active'); this.style.background='var(--grad)'; this.style.color='#14100a';
-				document.getElementById('userRole').value = this.getAttribute('data-role');
-				document.getElementById('roleError').style.display='none';
+				var input = document.getElementById(this.closest('.auth-field').querySelector('input').id) || this.parentElement.querySelector('input');
+				if(!input) return;
+				if(input.type === 'password'){
+					input.type = 'text';
+					this.querySelector('.eye-icon').style.display = 'none';
+					this.querySelector('.eye-off-icon').style.display = 'block';
+				} else {
+					input.type = 'password';
+					this.querySelector('.eye-icon').style.display = 'block';
+					this.querySelector('.eye-off-icon').style.display = 'none';
+				}
 			});
 		});
-		document.getElementById('signinForm').addEventListener('submit',function(e){ 
-			var ok=true; 
-			var email=document.getElementById('signinEmail'); 
-			if(!validateEmail(email)) ok=false; 
-			var pass=document.getElementById('signinPassword'); 
-			var perr=pass.parentElement.querySelector('.auth-error'); 
-			if(pass.value.length<6){ if(perr)perr.style.display='block'; pass.classList.add('is-invalid'); ok=false; } else { if(perr)perr.style.display='none'; pass.classList.remove('is-invalid'); }
-			var role=document.getElementById('userRole').value;
-			if(role!=='admin' && role!=='customer'){ document.getElementById('roleError').style.display='block'; ok=false; }
-			if(!ok){ e.preventDefault(); return; }
-			// Simulate login - redirect based on role
+
+		function setRole(role){
+			document.querySelectorAll('.role-btn').forEach(function(b){
+				var match = b.getAttribute('data-role') === role;
+				b.classList.toggle('is-active', match);
+				if(match){
+					b.style.background = 'var(--grad)';
+					b.style.color = '#14100a';
+				} else {
+					b.style.background = 'transparent';
+					b.style.color = '#fff';
+				}
+			});
+			document.getElementById('userRole').value = role;
+			var rerr = document.getElementById('roleError');
+			if(rerr) rerr.style.display = 'none';
+		}
+
+		document.querySelectorAll('.role-btn').forEach(function(btn){
+			btn.addEventListener('click', function(){
+				setRole(this.getAttribute('data-role'));
+			});
+		});
+
+		try {
+			var params = new URLSearchParams(window.location.search);
+			var rParam = params.get('role');
+			if(rParam === 'admin' || rParam === 'customer'){
+				setRole(rParam);
+			}
+		} catch(e){}
+
+		function formatName(str){
+			if(!str) return 'User';
+			var parts = str.replace(/[^a-zA-Z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean);
+			if(!parts.length) return 'User';
+			return parts.map(function(w){
+				return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+			}).join(' ');
+		}
+
+		function passwordError(v){
+			v = v || '';
+			if(v.length < 8) return 'Password must be at least 8 characters.';
+			if(!/[A-Z]/.test(v)) return 'Password must include at least one uppercase letter.';
+			if(!/[a-z]/.test(v)) return 'Password must include at least one lowercase letter.';
+			if(!/[0-9]/.test(v)) return 'Password must include at least one number.';
+			if(!/[^A-Za-z0-9]/.test(v)) return 'Password must include at least one special character.';
+			return '';
+		}
+		function validatePassword(el){
+			var err = el.parentElement.querySelector('.auth-error');
+			var msg = passwordError(el.value);
+			if(msg){
+				if(err){ err.textContent = msg; err.style.display = 'block'; }
+				el.classList.add('is-invalid');
+				return false;
+			}
+			if(err) err.style.display = 'none';
+			el.classList.remove('is-invalid');
+			return true;
+		}
+		document.querySelectorAll('input[type="password"]').forEach(function(i){
+			i.addEventListener('input', function(){
+				if(this.classList.contains('is-invalid')) validatePassword(this);
+			});
+		});
+		var rememberBox = document.getElementById('rememberMe');
+		if(rememberBox){
+			rememberBox.addEventListener('change', function(){
+				var e = document.getElementById('rememberError');
+				if(this.checked && e) e.style.display = 'none';
+			});
+		}
+
+		document.getElementById('signinForm').addEventListener('submit', function(e){
 			e.preventDefault();
-			var name = email.value.split('@')[0];
-			localStorage.setItem('userName', name.charAt(0).toUpperCase()+name.slice(1));
-			localStorage.setItem('userEmail', email.value);
+			var ok = true;
+			var email = document.getElementById('signinEmail');
+			if(!validateEmail(email, true)) ok = false;
+			var pass = document.getElementById('signinPassword');
+			if(!validatePassword(pass)) ok = false;
+			var role = (document.getElementById('userRole').value || '').trim().toLowerCase();
+			if(role !== 'admin' && role !== 'customer'){
+				var rerr = document.getElementById('roleError');
+				if(rerr) rerr.style.display = 'block';
+				ok = false;
+			}
+			var remember = document.getElementById('rememberMe');
+			var rmerr = document.getElementById('rememberError');
+			if(remember && !remember.checked){
+				if(rmerr) rmerr.style.display = 'block';
+				ok = false;
+			} else {
+				if(rmerr) rmerr.style.display = 'none';
+			}
+			if(!ok) return;
+
+			var emailVal = email.value.trim();
+			var passVal = pass.value;
+			var finalName = '';
+			var user = null;
+
+			if(window.DB && typeof DB.list === 'function'){
+				var existingUser = DB.list('users').filter(function(u){
+					return u.email && u.email.toLowerCase() === emailVal.toLowerCase();
+				})[0];
+
+				if(existingUser){
+					finalName = existingUser.name || formatName(emailVal.split('@')[0]);
+					user = DB.update('users', existingUser.id, {
+						role: role,
+						name: finalName,
+						title: role === 'admin' ? 'Administrator' : ''
+					});
+				} else {
+					var savedName = (localStorage.getItem('userEmail') === emailVal) ? localStorage.getItem('userName') : null;
+					finalName = savedName || formatName(emailVal.split('@')[0]);
+					user = {
+						id: DB.uid('U'),
+						role: role,
+						name: finalName,
+						email: emailVal,
+						phone: '',
+						password: passVal,
+						avatar: 'images/avatar-1.webp',
+						title: role === 'admin' ? 'Administrator' : '',
+						createdAt: DB.today()
+					};
+					DB.insert('users', user);
+				}
+				if (typeof DB.setSession === 'function') {
+					DB.setSession({ userId: user.id, role: role, at: Date.now() });
+				} else {
+					localStorage.setItem('stackly_session', JSON.stringify({ userId: user.id, role: role, at: Date.now() }));
+				}
+			} else {
+				finalName = formatName(emailVal.split('@')[0]);
+			}
+
+			localStorage.setItem('userName', finalName);
+			localStorage.setItem('userEmail', emailVal);
 			localStorage.setItem('userRole', role);
-			if(role==='admin'){ window.location.href='admin.html'; } else { window.location.href='customer.html'; }
+
+			if(role === 'admin'){
+				window.location.href = 'admin.html';
+			} else {
+				window.location.href = 'customer.html';
+			}
 		});
 	</script>
 </body>
