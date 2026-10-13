@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Before and after transformations from STACKLY Auto Spa — paint correction, ceramic coating and full interior restoration results.">
+	<title>Gallery — STACKLY Auto Spa</title>
+	<script>document.documentElement.classList.add('js','is-loading');setTimeout(function(){document.documentElement.classList.remove('is-loading');},2600);</script>
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f5a30a'/%3E%3Cstop offset='1' stop-color='%23ff6a2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2308090b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3C/svg%3E">
+	<link rel="icon" href="images/logo.webp" type="image/webp">
+
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+	<!-- ============ NAVBAR ============ -->
+	<nav class="navbar navbar-expand-lg fixed-top" id="navbar" aria-label="Primary">
+		<div class="container-fluid px-lg-5">
+			<a class="navbar-brand" href="index.html">
+				<img src="images/logo.webp" alt="STACKLY Auto Spa" class="brand-logo" width="1200" height="493">
+			</a>
+
+			<div class="nav-cta d-none">
+				<a href="contact.html" class="btn btn-accent btn-sm">Book Now</a>
+			</div>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span></span><span></span><span></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navMenu">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+					<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="gallery.html">Gallery</a></li>
+					<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+					<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+					<li class="nav-item"><a class="btn btn-ghost btn-sm px-4 ms-lg-1" href="login.html">Sign in</a></li>
+					<li class="nav-item ms-lg-3">
+						<a href="404.html" class="btn btn-accent btn-sm px-4 d-none d-lg-inline-flex" data-magnetic>Book Now</a>
+					</li>
+				<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<main>
+
+		<!-- ============ PAGE HERO ============ -->
+		<header class="page-hero">
+			<div class="page-hero__bg">
+				<img src="images/hero-gallery.webp" alt="" loading="eager" decoding="async">
+				<div class="page-hero__veil"></div>
+				<div class="page-hero__grain"></div>
+			</div>
+			<div class="container position-relative">
+				<span class="eyebrow" data-anim="fade-up"><i></i>Transformations</span>
+				<h1 class="page-hero__title" data-split data-anim="fade-up">Results you can drag across.</h1>
+				<p class="page-hero__lead" data-anim="fade-up">No filters, no retouching — just light, pads and patience. Pull the handle to see a single-stage correction on a five-year-old daily driver.</p>
+				<nav class="crumbs" aria-label="Breadcrumb" data-anim="fade-up">
+					<a href="index.html">Home</a><i>/</i><span aria-current="page">Gallery</span>
+				</nav>
+			</div>
+		</header>
+
+		<!-- ============ BEFORE / AFTER ============ -->
+		<section class="section">
+			<div class="container">
+				<div class="section-head head-row">
+					<div>
+						<span class="eyebrow" data-anim="fade-up">Before &amp; after</span>
+						<h2 class="section-title" data-split data-anim="fade-up">One panel at a time.</h2>
+					</div>
+					<p class="section-text mb-0" data-anim="fade-up">Drag the handle — or tap and swipe on touch devices — to compare the same car on the same day.</p>
+				</div>
+
+				<div class="compare" id="compare" data-anim="fade-up">
+					<div class="compare__layer compare__layer--before">
+						<img src="images/before.webp" alt="Vehicle finish before detailing" loading="lazy" decoding="async">
+						<span class="compare__tag compare__tag--before">Before</span>
+					</div>
+					<div class="compare__layer compare__layer--after">
+						<img src="images/after.webp" alt="Vehicle finish after detailing" loading="lazy" decoding="async">
+						<span class="compare__tag compare__tag--after">After</span>
+					</div>
+					<div class="compare__handle" id="compareHandle" aria-hidden="true">
+						<span>
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg>
+						</span>
+					</div>
+				</div>
+
+				<div class="stats-row mt-5" data-stagger>
+					<div class="stat">
+						<strong><span data-count="15320" data-suffix="+">0</span></strong>
+						<span>Cars detailed</span>
+					</div>
+					<div class="stat">
+						<strong><span data-count="640" data-suffix="+">0</span></strong>
+						<span>Photo reports sent</span>
+					</div>
+					<div class="stat">
+						<strong><span data-count="98" data-suffix="%">0</span></strong>
+						<span>Defects removed</span>
+					</div>
+					<div class="stat">
+						<strong><span data-count="4.9" data-decimals="1">0</span></strong>
+						<span>Average rating</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FILTERABLE GRID ============ -->
+		<section class="section section--muted">
+			<div class="container">
+				<div class="section-head section-head--center">
+					<span class="eyebrow" data-anim="fade-up">Recent work</span>
+					<h2 class="section-title" data-split data-anim="fade-up">A wall of finished paint.</h2>
+					<p class="section-text" data-anim="fade-up">Filter by the service performed. Every car left the studio with a written report and an aftercare plan.</p>
+				</div>
+
+				<div class="filter-bar" data-anim="fade-up">
+					<button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All work</button>
+					<button class="filter-btn" type="button" data-filter="coating" aria-pressed="false">Ceramic coating</button>
+					<button class="filter-btn" type="button" data-filter="correction" aria-pressed="false">Paint correction</button>
+					<button class="filter-btn" type="button" data-filter="detail" aria-pressed="false">Full detail</button>
+				</div>
+
+				<div class="gallery__grid" data-stagger>
+					<figure class="gallery__item gallery__item--tall" data-cat="coating">
+						<img src="images/gallery-1.webp" alt="Coupé finished with a ceramic coating" loading="lazy" decoding="async">
+						<figcaption><span>Ceramic Coating</span><strong>Grand Tourer</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="correction">
+						<img src="images/gallery-2.webp" alt="Performance car after paint correction" loading="lazy" decoding="async">
+						<figcaption><span>Paint Correction</span><strong>Track Bred</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="detail">
+						<img src="images/gallery-3.webp" alt="Classic car after a full restoration detail" loading="lazy" decoding="async">
+						<figcaption><span>Full Restoration</span><strong>American Classic</strong></figcaption>
+					</figure>
+					<figure class="gallery__item gallery__item--wide" data-cat="coating">
+						<img src="images/gallery-4.webp" alt="Sedan after a protection package" loading="lazy" decoding="async">
+						<figcaption><span>Coating + Interior</span><strong>Daily Driver Reset</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="detail">
+						<img src="images/gallery-5.webp" alt="Sports car after a complete detail" loading="lazy" decoding="async">
+						<figcaption><span>Full Detail</span><strong>Weekend Coupe</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="correction">
+						<img src="images/gallery-6.webp" alt="Saloon after multi-stage polishing" loading="lazy" decoding="async">
+						<figcaption><span>Two-Stage Correction</span><strong>Executive Saloon</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="coating">
+						<img src="images/gallery-8.webp" alt="Luxury car after a graphene coating" loading="lazy" decoding="async">
+						<figcaption><span>Graphene Coating</span><strong>Luxury Line</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="detail">
+						<img src="images/gallery-7.webp" alt="Vehicle after a maintenance detail" loading="lazy" decoding="async">
+						<figcaption><span>Maintenance Detail</span><strong>City Runabout</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="correction">
+						<img src="images/svc-correction.webp" alt="Machine polishing in progress under inspection lighting" loading="lazy" decoding="async">
+						<figcaption><span>Correction</span><strong>Under 6000K Light</strong></figcaption>
+					</figure>
+					<figure class="gallery__item" data-cat="detail">
+						<img src="images/svc-wash.webp" alt="Contact wash in progress" loading="lazy" decoding="async">
+						<figcaption><span>Decontamination</span><strong>Foam Pre-Soak</strong></figcaption>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ CASE STUDY ============ -->
+		<section class="section" id="case-study">
+			<div class="container">
+				<div class="section-head head-row">
+					<div>
+						<span class="eyebrow" data-anim="fade-up">Case study</span>
+						<h2 class="section-title" data-split data-anim="fade-up">Holograms on an electric SUV.</h2>
+					</div>
+					<p class="section-text mb-0" data-anim="fade-up">Four days, one body-shop botch and a coating on top. Every stage below is documented in the owner's handover file.</p>
+				</div>
+
+				<div class="row g-5 align-items-start">
+					<div class="col-lg-6">
+						<figure class="gallery__item" data-anim="fade-up">
+							<img src="images/svc-ceramic.webp" alt="Ceramic coating being applied in the studio bay" loading="lazy" decoding="async">
+							<figcaption><span>Day 4</span><strong>Coating, applied by hand</strong></figcaption>
+						</figure>
+
+						<ul class="hours-list mt-4" data-anim="fade-up">
+							<li><strong>Vehicle</strong><span>2021 electric SUV</span></li>
+							<li><strong>Arrived with</strong><span>Holograms from a body-shop polish</span></li>
+							<li><strong>In the studio</strong><span>4 days</span></li>
+							<li><strong>Work performed</strong><span>Two-stage correction + 5-year coating</span></li>
+							<li><strong>Defects removed</strong><span>94% measured</span></li>
+						<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+					</div>
+
+					<div class="col-lg-6">
+						<span class="eyebrow" data-anim="fade-up">Four days in the bay</span>
+						<div class="timeline" data-stagger>
+							<div class="timeline__item">
+								<span class="timeline__year">Day 1</span>
+								<h4>Inspection &amp; decontamination</h4>
+								<p>Paint gauged panel by panel, foam pre-soak, iron dissolve and clay bar. Arrival photos logged before anything else was touched.</p>
+							</div>
+							<div class="timeline__item">
+								<span class="timeline__year">Day 2</span>
+								<h4>First cutting stage</h4>
+								<p>A heavy cut on a microfiber pad levels the holograms, then gloss is checked under 6000K light before moving on.</p>
+							</div>
+							<div class="timeline__item">
+								<span class="timeline__year">Day 3</span>
+								<h4>Refinement</h4>
+								<p>Two finer polishes remove any haze the cut left behind — panel by panel, with gauge readings after every pass.</p>
+							</div>
+							<div class="timeline__item">
+								<span class="timeline__year">Day 4</span>
+								<h4>Coat &amp; handover</h4>
+								<p>IPA wipe, graphene coating, heat-assisted cure, then the walkthrough with the written report and warranty card.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ MORE REVIEWS ============ -->
+		<section class="section section--muted" id="reviews">
+			<div class="container">
+				<div class="section-head section-head--center">
+					<span class="eyebrow" data-anim="fade-up">Client reactions</span>
+					<h2 class="section-title" data-split data-anim="fade-up">Said at the handover.</h2>
+					<p class="section-text" data-anim="fade-up">Collected in the studio, minutes after the keys went back — the same reviews you'll find on our Google profile.</p>
+				</div>
+
+				<div class="row g-4" data-stagger>
+					<div class="col-lg-4">
+						<article class="quote-block h-100">
+							<p>The before photos were brutal to look at — but they showed exactly what they'd fix, and the after was exactly what they promised.</p>
+							<footer>
+								<span class="q-badge" aria-hidden="true">HO</span>
+								<div>
+									<strong>Hannah Okafor</strong>
+									<span>Electric SUV · Coating + correction</span>
+								</div>
+							</footer>
+						</article>
+					</div>
+
+					<div class="col-lg-4">
+						<article class="quote-block h-100">
+							<p>Four days in the bay, photo updates every evening, and a car that looks better than the showroom example they sold me.</p>
+							<footer>
+								<span class="q-badge" aria-hidden="true">RS</span>
+								<div>
+									<strong>Rick Salazar</strong>
+									<span>Sports coupé · Two-stage correction</span>
+								</div>
+							</footer>
+						</article>
+					</div>
+
+					<div class="col-lg-4">
+						<article class="quote-block h-100">
+							<p>I've used three detailers in the valley. This is the first one that handed me a written report instead of a smile.</p>
+							<footer>
+								<span class="q-badge" aria-hidden="true">DW</span>
+								<div>
+									<strong>Dana Whitfield</strong>
+									<span>Estate wagon · Full restoration</span>
+								</div>
+							</footer>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ HOW WE SHOOT ============ -->
+		<section class="section" id="how-we-shoot">
+			<div class="container">
+				<div class="section-head head-row">
+					<div>
+						<span class="eyebrow" data-anim="fade-up">Behind the lens</span>
+						<h2 class="section-title" data-split data-anim="fade-up">Shot like we work.</h2>
+					</div>
+					<p class="section-text mb-0" data-anim="fade-up">The photos on this page are documentation, not marketing — produced by the same process, on every car, every time.</p>
+				</div>
+
+				<div class="contact-grid" data-stagger>
+					<article class="info-card">
+						<div class="info-card__icon">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/></svg>
+						</div>
+						<h3>Same lights as the work</h3>
+						<p>Every photo is taken under the same 6000K inspection lights the car was corrected under — if a defect survived, the camera sees it.</p>
+					</article>
+
+					<article class="info-card">
+						<div class="info-card__icon">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M2 6h14a2 2 0 0 1 2 2v14"/></svg>
+						</div>
+						<h3>Fixed angles</h3>
+						<p>Three shots per stage from taped floor marks: front three-quarter, rear three-quarter and a close-up of the worst panel.</p>
+					</article>
+
+					<article class="info-card">
+						<div class="info-card__icon">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+						</div>
+						<h3>No editing</h3>
+						<p>White balance matched to the lights, straight out of camera. No filters, no retouching, no cloning out the bit we missed.</p>
+					</article>
+
+					<article class="info-card">
+						<div class="info-card__icon">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M4 12h10M4 18h7"/><path d="m15 16 2 2 4-4"/></svg>
+						</div>
+						<h3>Documented each stage</h3>
+						<p>Arrival set, after-decon set, after-correction set, final set — all in your report, so the transformation is yours to keep.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ QUOTE ============ -->
+		<section class="section section--muted">
+			<div class="container">
+				<div class="row g-5 align-items-center">
+					<div class="col-lg-7">
+						<div class="quote-block" data-anim="fade-up">
+							<p>They sent me forty photos of the paint before they touched it. By the time I picked the car up, every one of those marks was gone — and nothing else had been touched either.</p>
+							<footer>
+								<img src="images/avatar-3.webp" alt="Marcus Feld" loading="lazy" decoding="async">
+								<div>
+									<strong>Marcus Feld</strong>
+									<span>Family SUV · Interior restoration</span>
+								</div>
+							</footer>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<span class="eyebrow" data-anim="fade-up">Your turn</span>
+						<h2 class="section-title" data-split data-anim="fade-up">Want your car on this wall?</h2>
+						<p class="section-text" data-anim="fade-up">Book a slot and we will document the whole transformation for you — same lighting, same angles, no editing.</p>
+						<div class="mt-4 d-flex flex-wrap gap-3" data-anim="fade-up">
+							<a href="contact.html" class="btn btn-accent px-5" data-magnetic>Book your detail</a>
+							<a href="pricing.html" class="btn btn-ghost px-5">See pricing</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ AFTERCARE ============ -->
+		<section class="section" id="aftercare">
+			<div class="container">
+				<div class="section-head head-row">
+					<div>
+						<span class="eyebrow" data-anim="fade-up">Aftercare</span>
+						<h2 class="section-title" data-split data-anim="fade-up">How the finish stays finished.</h2>
+					</div>
+					<p class="section-text mb-0" data-anim="fade-up">Every car leaves with this in writing. The short version: gentle chemistry, clean towels, no automatic brushes.</p>
+				</div>
+
+				<div class="incl-grid" data-stagger>
+					<ul class="check-list mb-0">
+						<li>Two-bucket wash with pH-neutral shampoo</li>
+						<li>Never wash hot panels or in direct sun</li>
+						<li>Fresh mitt and drying towel, never dropped</li>
+						<li>Wheels last, with their own mitt</li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+					<ul class="check-list mb-0">
+						<li>Blot dry with plush microfibre or filtered air</li>
+						<li>Spray sealant top-up every three months</li>
+						<li>Iron fallout decontamination twice a year</li>
+						<li>Glass finished with a dedicated towel</li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+					<ul class="check-list mb-0">
+						<li>No automatic brushes — ever</li>
+						<li>Bird mess and tree sap lifted within 24 hours</li>
+						<li>Park shaded while a fresh coating cures</li>
+						<li>Free annual inspection to keep the warranty stamped</li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+				</div>
+
+				<div class="mt-4 d-flex flex-wrap align-items-center justify-content-between gap-3" data-anim="fade-up">
+					<p class="table-note mt-0 mb-0">Coating owners receive a full aftercare folder at handover — wash routine, product list and warranty card.</p>
+					<a href="services.html" class="link-arrow">Book a maintenance detail
+						<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ CTA ============ -->
+		<section class="cta-band">
+			<div class="container">
+				<div class="cta-band__inner">
+					<div>
+						<span class="eyebrow" data-anim="fade-up">Free inspection</span>
+						<h2 data-split data-anim="fade-up">Bring us the worst panel you own.</h2>
+						<p data-anim="fade-up">We will map it, gauge it and show you exactly what is achievable — before you commit.</p>
+					</div>
+					<div class="cta-band__actions" data-anim="fade-up">
+						<a href="404.html" class="btn btn-accent btn-lg px-5" data-magnetic>Book an inspection</a>
+						<a href="services.html" class="btn btn-ghost btn-lg px-5">Browse services</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- ============ FOOTER ============ -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row g-4 footer__top">
+				<div class="col-lg-3">
+					<a class="navbar-brand footer__brand" href="index.html">
+						<img src="images/logo.webp" alt="STACKLY Auto Spa" class="brand-logo" width="1200" height="493">
+					</a>
+					<p>A climate-controlled detailing studio for people who care how light moves across paint.</p>
+					<div class="footer__social">
+						<a href="404.html"aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+						<a href="404.html"aria-label="Twitter / X"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a>
+						<a href="404.html"aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+						<a href="404.html"aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+					</div>
+				</div>
+
+				<div class="col-6 col-lg-2">
+					<h5>Explore</h5>
+					<ul class="footer__links">
+						<li><a href="about.html">About</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="index.html#process">Process</a></li>
+						<li><a href="gallery.html">Gallery</a></li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+				</div>
+
+				<div class="col-6 col-lg-2">
+					<h5>Packages</h5>
+					<ul class="footer__links">
+						<li><a href="pricing.html">Essential</a></li>
+						<li><a href="pricing.html">Signature</a></li>
+						<li><a href="pricing.html">Ultimate</a></li>
+						<li><a href="contact.html">Gift cards</a></li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+				</div>
+
+				<div class="col-6 col-lg-2">
+					<h5>Support</h5>
+					<ul class="footer__links">
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="contact.html">FAQs</a></li>
+						<li><a href="services.html">Warranty</a></li>
+						<li><a href="pricing.html">Financing</a></li>
+					<li class="nav-item d-lg-none mt-3"><a href="404.html" class="btn btn-accent btn-sm w-100">Book Now</a></li>
+				</ul>
+				</div>
+
+				<div class="col-lg-3">
+					<h5>Studio notes</h5>
+					<p class="footer__news-text">Monthly care guides, product tests and member-only slots.</p>
+					<form class="footer__news" id="newsForm" novalidate>
+						<input type="email" class="footer-news-input" placeholder="Your email address" aria-label="Email address" required pattern="^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$" title="Please enter a valid email address using only letters, numbers, @, and ." inputmode="email" maxlength="100" spellcheck="false" oninput="validateEmailInput(this)" onkeypress="return /^[A-Za-z0-9@.]*$/.test(event.key)" onpaste="setTimeout(function(){ validateEmailInput(this.target||this); }, 0); return true">
+						<button type="submit" aria-label="Subscribe">
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+						</button>
+					</form>
+					<small class="footer-news-error" style="display:none; color: #ff5c5c; font-size: 0.85rem; margin-top: 0.6rem;">Please enter a valid email address using only letters, numbers, @, and .</small>
+					<small class="footer__news-msg" id="newsMsg"></small>
+				</div>
+			</div>
+
+			<div class="footer__bottom">
+				<span>© <span id="year">2026</span> STACKLY Auto Spa. All rights reserved.</span>
+				<span>Crafted for cars that deserve better.</span>
+			</div>
+		</div>
+	</footer>
+
+	<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+		<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+	</button>
+
+	<div class="page-transition" aria-hidden="true">
+		<div class="page-transition__panel"></div>
+		<div class="page-transition__panel"></div>
+		<div class="page-transition__panel"></div>
+		<div class="page-transition__panel"></div>
+		<div class="page-transition__mark"><img src="images/logo.webp" alt="" class="brand-logo"></div>
+	</div>
+
+	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+	<script src="js/vendor/gsap.min.js"></script>
+	<script src="js/vendor/ScrollTrigger.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
