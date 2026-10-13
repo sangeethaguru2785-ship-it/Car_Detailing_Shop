@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Sign in to your STACKLY Auto Spa account.">
+	<title>Sign In | STACKLY Auto Spa</title>
+	<link rel="icon" href="images/logo.webp" type="image/webp">
+	<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/pages.css">
+	<style>
+		body.auth-body { margin:0; background:var(--bg); overflow-x:hidden; }
+		.auth-wrapper { min-height:100vh; min-height:100dvh; display:grid; grid-template-columns:1fr 1fr; position:relative; }
+		.auth-hero { position:relative; display:flex; flex-direction:column; justify-content:center; padding:clamp(40px,6vw,80px); overflow:hidden; }
+		.auth-hero-bg { position:absolute; inset:0; z-index:-2; }
+		.auth-hero-bg img { width:100%; height:100%; object-fit:cover; }
+		.auth-hero-veil { position:absolute; inset:0; z-index:-1; background:linear-gradient(160deg, rgba(6,7,9,.98) 0%, rgba(6,7,9,.85) 60%, rgba(6,7,9,.6) 100%); }
+		.auth-hero-content { max-width:620px; }
+		.auth-form-wrapper { display:flex; align-items:center; justify-content:center; padding:clamp(24px,5vw,64px); background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); position:relative; }
+		.auth-form-wrapper::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.02) 1px,transparent 1px); background-size:40px 40px; opacity:.3; pointer-events:none; }
+		.auth-card { width:min(480px,92vw); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:clamp(28px,4vw,48px); box-shadow:0 60px 120px -70px rgba(0,0,0,1); position:relative; animation:fadeInUp .8s ease-out; }
+		@keyframes fadeInUp { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+		.auth-logo { display:flex; justify-content:center; margin-bottom:clamp(20px,3vw,32px); }
+		.auth-logo img { height:clamp(36px,4vw,44px); width:auto; }
+		.auth-header { text-align:center; margin-bottom:clamp(24px,3vw,40px); }
+		.auth-title { font-family:var(--font-d); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; letter-spacing:-.04em; margin-bottom:.5rem; }
+		.auth-subtitle { color:var(--muted); margin-bottom:0; }
+		.auth-field { margin-bottom:1.25rem; position:relative; }
+		.auth-label { display:block; font-family:var(--font-d); font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.5rem; color:#fff; }
+		.auth-input { width:100%; background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--text); border-radius:12px; padding:.95rem 1.15rem; font-size:.98rem; min-height:54px; transition:border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease); }
+		.auth-input::placeholder { color:rgba(255,255,255,.5); }
+		.auth-input:focus { background:rgba(255,255,255,.06); border-color:var(--accent); box-shadow:0 0 0 3px rgba(245,163,10,.16); outline:none; }
+		.auth-input.is-invalid { border-color:#ff5c5c; box-shadow:0 0 0 3px rgba(255,92,92,.14); }
+		.auth-error { display:none; color:#ff5c5c; font-size:.9rem; margin-top:.5rem; }
+		.auth-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; }
+		.auth-check { display:flex; align-items:center; gap:.6rem; color:var(--muted); cursor:pointer; }
+		.auth-check input { width:18px; height:18px; accent-color:var(--accent); }
+		.auth-link { color:var(--accent); font-weight:600; text-decoration:none; }
+		.auth-link:hover { color:var(--accent-2); }
+		.auth-btn { width:100%; justify-content:center; padding:1rem 2rem; font-size:1rem; }
+		.auth-footer { text-align:center; margin-top:1.75rem; color:var(--muted); }
+		.password-toggle { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:transparent; border:none; color:var(--muted); cursor:pointer; padding:8px; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+		.password-toggle:hover { color:#fff; background:rgba(255,255,255,.08); }
+		.password-toggle svg { width:20px; height:20px; }
+		.auth-home { display:flex; justify-content:center; margin-top:1.25rem; }
+		@media(max-width:991px){ .auth-wrapper{grid-template-columns:1fr;} .auth-hero{min-height:40vh; text-align:center; align-items:center;} .auth-hero-content{text-align:center;} }
+	</style>
+</head>
+<body class="auth-body">
+	<div class="auth-wrapper">
+		<aside class="auth-hero">
+			<div class="auth-hero-bg"><img src="images/hero-inner.webp" alt="STACKLY Auto Spa Studio"></div>
+			<div class="auth-hero-veil"></div>
+			<div class="auth-hero-content">
+				<a href="index.html" class="navbar-brand mb-4 d-inline-flex">
+					<img src="images/logo.webp" alt="STACKLY Auto Spa" class="brand-logo">
+				</a>
+				<span class="eyebrow"><i></i>Welcome back</span>
+				<h1>Your detail, tracked from bay to handover.</h1>
+				<p>Sign in to manage your bookings, track your vehicle, and access your service history with our premium detailing studio.</p>
+			</div>
+		</aside>
+		<main class="auth-form-wrapper">
+			<div class="auth-card">
+				<div class="auth-logo">
+					<a href="index.html"><img src="images/logo.webp" alt="STACKLY Auto Spa"></a>
+				</div>
+				<div class="auth-header">
+					<h2 class="auth-title">Sign In</h2>
+					<p class="auth-subtitle">Access your STACKLY account</p>
+				</div>
+				<form id="signinForm" novalidate>
+					<div class="auth-field">
+						<label class="auth-label">Select Role</label>
+						<div class="role-toggle" style="display:flex; gap:.75rem; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:12px; padding:.4rem;">
+							<button type="button" class="role-btn is-active" data-role="customer" style="flex:1; padding:.7rem 1rem; border-radius:10px; border:none; background:var(--grad); color:#14100a; font-weight:600; font-family:var(--font-d);">Customer</button>
+							<button type="button" class="role-btn" data-role="admin" style="flex:1; padding:.7rem 1rem; border-radius:10px; border:none; background:transparent; color:#fff; font-weight:600; font-family:var(--font-d);">Admin</button>
+						</div>
+						<input type="hidden" id="userRole" value="customer">
+						<div class="auth-error" id="roleError" style="display:none;">Please select a role.</div>
+					</div>
+
+					<div class="auth-field">
+						<label class="auth-label" for="signinEmail">Email Address</label>
+						<input type="email" id="signinEmail" class="auth-input email-input" placeholder="you@example.com" autocomplete="username" required
+							pattern="^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$"
+							title="Please enter a valid email address using only letters, numbers, @, and ."
+							inputmode="email" maxlength="100" spellcheck="false">
+						<div class="auth-error email-error">Please enter a valid email address using only letters, numbers, @, and .</div>
+					</div>
+					<div class="auth-field">
+						<label class="auth-label" for="signinPassword">Password</label>
+						<input type="password" id="signinPassword" class="auth-input" placeholder="Enter your password" autocomplete="current-password" required minlength="6">
+						<button type="button" class="password-toggle" data-toggle="password" aria-label="Show password">
+							<svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+							<svg class="eye-off-icon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+						</button>
+						<div class="auth-error">Password must be at least 6 characters.</div>
+					</div>
+					<div class="auth-row">
+						<label class="auth-check">
+							<input type="checkbox" id="rememberMe">
+							<span>Remember Me</span>
+						</label>
+						<a href="404.html" class="auth-link">Forgot Password?</a>
+					</div>
+					<button type="submit" class="btn btn-accent auth-btn">Sign In</button>
+				</form>
+				<div class="auth-footer">
+					Don't have an account? <a href="signup.html" class="auth-link">Sign Up</a>
+				</div>
+				<div class="auth-home">
+					<a href="index.html" class="btn btn-ghost btn-sm px-4">Go To Home</a>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+	<script>
+		function validateEmail(el){ var r=/^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/; var err=el.parentElement.querySelector('.email-error'); if(el.value.trim()===''){ if(err)err.style.display='none'; el.classList.remove('is-invalid'); return true; } if(r.test(el.value.trim())){ if(err)err.style.display='none'; el.classList.remove('is-invalid'); return true; } else { if(err)err.style.display='block'; el.classList.add('is-invalid'); return false; } }
+		document.querySelectorAll('.email-input').forEach(function(i){ i.addEventListener('input',function(){validateEmail(this)}); i.addEventListener('keypress',function(e){return /^[A-Za-z0-9@.]*$/.test(e.key)}); });
+		document.querySelectorAll('[data-toggle="password"]').forEach(function(btn){ btn.addEventListener('click',function(){ var input=document.getElementById(this.closest('.auth-field').querySelector('input').id)||this.parentElement.querySelector('input'); if(!input)return; if(input.type==='password'){ input.type='text'; this.querySelector('.eye-icon').style.display='none'; this.querySelector('.eye-off-icon').style.display='block'; } else { input.type='password'; this.querySelector('.eye-icon').style.display='block'; this.querySelector('.eye-off-icon').style.display='none'; } }); });
+				// Role selection
+		document.querySelectorAll('.role-btn').forEach(function(btn){
+			btn.addEventListener('click', function(){
+				document.querySelectorAll('.role-btn').forEach(function(b){ b.classList.remove('is-active'); b.style.background='transparent'; b.style.color='#fff'; });
+				this.classList.add('is-active'); this.style.background='var(--grad)'; this.style.color='#14100a';
+				document.getElementById('userRole').value = this.getAttribute('data-role');
+				document.getElementById('roleError').style.display='none';
+			});
+		});
+		document.getElementById('signinForm').addEventListener('submit',function(e){ 
+			var ok=true; 
+			var email=document.getElementById('signinEmail'); 
+			if(!validateEmail(email)) ok=false; 
+			var pass=document.getElementById('signinPassword'); 
+			var perr=pass.parentElement.querySelector('.auth-error'); 
+			if(pass.value.length<6){ if(perr)perr.style.display='block'; pass.classList.add('is-invalid'); ok=false; } else { if(perr)perr.style.display='none'; pass.classList.remove('is-invalid'); }
+			var role=document.getElementById('userRole').value;
+			if(role!=='admin' && role!=='customer'){ document.getElementById('roleError').style.display='block'; ok=false; }
+			if(!ok){ e.preventDefault(); return; }
+			// Simulate login - redirect based on role
+			e.preventDefault();
+			var name = email.value.split('@')[0];
+			localStorage.setItem('userName', name.charAt(0).toUpperCase()+name.slice(1));
+			localStorage.setItem('userEmail', email.value);
+			localStorage.setItem('userRole', role);
+			if(role==='admin'){ window.location.href='admin.html'; } else { window.location.href='customer.html'; }
+		});
+	</script>
+</body>
+</html>

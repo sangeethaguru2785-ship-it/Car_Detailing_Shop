@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+	<title>Admin Dashboard — STACKLY Auto Spa</title>
+	<link rel="icon" href="images/logo.webp" type="image/webp">
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/pages.css">
+	<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dash-body" id="adminApp">
+	<div class="dash-app" id="dashApp">
+		<!-- ============ SIDEBAR ============ -->
+		<aside class="dash-sidebar" id="sidebar">
+			<a class="dash-brand" href="index.html">
+				<img src="images/logo.webp" alt="STACKLY Auto Spa">
+				<span class="dash-brand__tag">Admin</span>
+			</a>
+			<nav class="dash-nav" id="dashNav" aria-label="Admin sections">
+				<span class="dash-nav__label">Studio</span>
+				<a class="dash-link" href="#overview"><span class="ico"></span><span class="dash-label">Overview</span></a>
+				<a class="dash-link" href="#bookings"><span class="ico"></span><span class="dash-label">Bookings</span><span class="dash-link__badge badge-status st-pending" id="navPending" hidden>0</span></a>
+				<a class="dash-link" href="#customers"><span class="ico"></span><span class="dash-label">Customers</span></a>
+				<a class="dash-link" href="#vehicles"><span class="ico"></span><span class="dash-label">Vehicles</span></a>
+				<a class="dash-link" href="#staff"><span class="ico"></span><span class="dash-label">Staff</span></a>
+				<span class="dash-nav__label">Catalogue</span>
+				<a class="dash-link" href="#services"><span class="ico"></span><span class="dash-label">Services</span></a>
+				<a class="dash-link" href="#pricing"><span class="ico"></span><span class="dash-label">Pricing &amp; Offers</span></a>
+				<span class="dash-nav__label">Operations</span>
+				<a class="dash-link" href="#payments"><span class="ico"></span><span class="dash-label">Payments</span></a>
+				<a class="dash-link" href="#reviews"><span class="ico"></span><span class="dash-label">Reviews</span><span class="dash-link__badge badge-status st-pending" id="navReviews" hidden>0</span></a>
+				<a class="dash-link" href="#reports"><span class="ico"></span><span class="dash-label">Reports</span></a>
+				<a class="dash-link" href="#settings"><span class="ico"></span><span class="dash-label">Settings</span></a>
+			</nav>
+			<div class="dash-sidebar__foot">
+				<div class="dash-usercard">
+					<div id="sideAvatar" style="width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#14100a;font-weight:700;">U</div>
+					<div style="min-width:0">
+						<strong class="user-name" id="sideUserName">—</strong>
+						<span id="sideUserRole">—</span>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<div class="overlay" id="overlay"></div>
+
+		<!-- ============ MAIN ============ -->
+		<div class="dash-main">
+			<header class="dash-topbar">
+				<button class="dash-burger" id="burger" aria-label="Toggle menu"></button>
+				<div class="dash-title">
+					<h1 id="pageTitle">Overview</h1>
+					<p id="pageSub">Studio performance at a glance</p>
+				</div>
+				<div class="dash-topbar__actions">
+					<label class="dash-search">
+						<span class="s-ico"></span>
+						<input type="search" id="globalSearch" placeholder="Search bookings, customers…" aria-label="Search">
+					</label>
+					<button class="dash-icon-btn" id="notifBtn" aria-label="Notifications"><span class="b-ico"></span><span class="dot" id="notifDot" hidden></span></button>
+					<div class="dash-profile">
+						<button class="dash-profile__btn" id="profileBtn" aria-haspopup="true" aria-expanded="false">
+							<img id="topAvatar" src="images/avatar-1.webp" alt="">
+							<span class="who"><strong id="topUserName" style="display:block;color:#fff;font-family:var(--font-d);font-size:.82rem;line-height:1.1">—</strong><span id="topUserRole" style="font-size:.72rem;color:var(--muted)">—</span></span>
+						</button>
+						<div class="dash-menu" id="profileMenu" role="menu">
+							<div class="dash-menu__head"><strong id="menuName">—</strong><span id="menuEmail">—</span></div>
+							<a href="#settings" data-goto="#settings"><span class="mi1"></span> Shop settings</a>
+							<a href="index.html"><span class="mi2"></span> View website</a>
+							<button type="button" data-logout><span class="mi3"></span> Sign out</button>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<main class="dash-content">
+				<section class="dash-view" id="view-overview" data-title="Overview" data-sub="Studio performance at a glance"><div data-body="overview"></div></section>
+				<section class="dash-view" id="view-bookings" data-title="Booking Management" data-sub="Confirm, reschedule, assign and cancel appointments"><div data-body="bookings"></div></section>
+				<section class="dash-view" id="view-customers" data-title="Customer Management" data-sub="Contact details and booking history"><div data-body="customers"></div></section>
+				<section class="dash-view" id="view-vehicles" data-title="Vehicle Management" data-sub="Registration, model and vehicle type"><div data-body="vehicles"></div></section>
+				<section class="dash-view" id="view-staff" data-title="Staff Management" data-sub="Assign detailers and track job status"><div data-body="staff"></div></section>
+				<section class="dash-view" id="view-services" data-title="Service Management" data-sub="Create and edit the detailing menu"><div data-body="services"></div></section>
+				<section class="dash-view" id="view-pricing" data-title="Pricing &amp; Offers" data-sub="Update service prices and promotions"><div data-body="pricing"></div></section>
+				<section class="dash-view" id="view-payments" data-title="Payment Management" data-sub="Transactions, status and revenue"><div data-body="payments"></div></section>
+				<section class="dash-view" id="view-reviews" data-title="Reviews &amp; Feedback" data-sub="Moderate and publish customer reviews"><div data-body="reviews"></div></section>
+				<section class="dash-view" id="view-reports" data-title="Reports &amp; Analytics" data-sub="Trends, revenue and popular services"><div data-body="reports"></div></section>
+				<section class="dash-view" id="view-settings" data-title="Settings" data-sub="Shop information, hours and profile"><div data-body="settings"></div></section>
+			</main>
+		</div>
+	</div>
+
+	<div id="modalRoot" class="modal-root"></div>
+	<div id="toastRoot" class="toast-root"></div>
+
+	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+	<script src="js/dashboard/store.js"></script>
+	<script src="js/dashboard/ui.js"></script>
+	<script src="js/dashboard/auth.js"></script>
+	<script src="js/dashboard/admin.js"></script>
+<script>
+	function validateEmailInput(input) {
+		var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/;
+		var error = input.parentElement ? input.parentElement.querySelector('.email-error') : (input.parentElement ? input.parentElement.parentElement.querySelector('.email-error') : null);
+		if (!error && input.parentElement) {
+			error = input.parentElement.querySelector('.footer-news-error');
+		}
+		if (input.value.trim() === '') {
+			if (error) error.style.display = 'none';
+			input.classList.remove('is-invalid');
+			return;
+		}
+		if (emailRegex.test(input.value.trim())) {
+			if (error) error.style.display = 'none';
+			input.classList.remove('is-invalid');
+		} else {
+			if (error) error.style.display = 'block';
+			input.classList.add('is-invalid');
+		}
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+		var forms = document.querySelectorAll('form');
+		var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/;
+		forms.forEach(function(form) {
+			form.addEventListener('submit', function(e) {
+				var emailInputs = form.querySelectorAll('.email-input, .footer-news-input, input[type="email"]');
+				var hasInvalid = false;
+				emailInputs.forEach(function(input) {
+					var val = input.value.trim();
+					if (!emailRegex.test(val)) {
+						hasInvalid = true;
+						var error = input.parentElement ? input.parentElement.querySelector('.email-error, .footer-news-error') : null;
+						if (error) error.style.display = 'block';
+						input.classList.add('is-invalid');
+						input.focus();
+					}
+				});
+				if (hasInvalid) {
+					e.preventDefault();
+				}
+			});
+		});
+	});
+</script>
+<script>function initProfile(){try{var n=localStorage.getItem("userName")||"User";var r=localStorage.getItem("userRole")||"";var ini=n.trim().split(/\s+/).filter(Boolean).map(function(x){return x[0]||"";}).join("").substring(0,2).toUpperCase();var el=document.getElementById("sideUserName");if(el)el.textContent=n;el=document.getElementById("sideUserRole");if(el)el.textContent=r;var av=document.getElementById("sideAvatar");if(av){if(av.tagName==="IMG"){av.alt=n;}else{av.textContent=ini;}}}catch(e){}};document.addEventListener("DOMContentLoaded",initProfile);</script></body>
+</html>

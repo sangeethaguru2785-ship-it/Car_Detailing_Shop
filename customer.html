@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+	<title>My Dashboard — STACKLY Auto Spa</title>
+	<link rel="icon" href="images/logo.webp" type="image/webp">
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/pages.css">
+	<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dash-body" id="customerApp">
+	<div class="dash-app" id="dashApp">
+		<!-- ============ SIDEBAR ============ -->
+		<aside class="dash-sidebar" id="sidebar">
+			<a class="dash-brand" href="index.html">
+				<img src="images/logo.webp" alt="STACKLY Auto Spa">
+				<span class="dash-brand__tag">My Garage</span>
+			</a>
+			<nav class="dash-nav" id="dashNav" aria-label="Customer sections">
+				<span class="dash-nav__label">Studio</span>
+				<a class="dash-link" href="#overview"><span class="ico"></span><span class="dash-label">Overview</span></a>
+				<a class="dash-link" href="#book"><span class="ico"></span><span class="dash-label">Book a Service</span></a>
+				<a class="dash-link" href="#bookings"><span class="ico"></span><span class="dash-label">My Bookings</span><span class="dash-link__badge badge-status st-pending" id="navUpcoming" hidden>0</span></a>
+				<a class="dash-link" href="#tracking"><span class="ico"></span><span class="dash-label">Track Service</span></a>
+				<a class="dash-link" href="#vehicles"><span class="ico"></span><span class="dash-label">My Vehicles</span></a>
+				<span class="dash-nav__label">Account</span>
+				<a class="dash-link" href="#payments"><span class="ico"></span><span class="dash-label">Payments</span></a>
+				<a class="dash-link" href="#offers"><span class="ico"></span><span class="dash-label">Offers</span></a>
+				<a class="dash-link" href="#reviews"><span class="ico"></span><span class="dash-label">My Reviews</span><span class="dash-link__badge badge-status st-pending" id="navReviewable" hidden>0</span></a>
+				<a class="dash-link" href="#profile"><span class="ico"></span><span class="dash-label">Profile</span></a>
+			</nav>
+			<div class="dash-sidebar__foot">
+				<div class="dash-usercard">
+					<div id="sideAvatar" style="width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#14100a;font-weight:700;">U</div>
+					<div style="min-width:0">
+						<strong class="user-name" id="sideUserName">—</strong>
+						<span id="sideUserRole">—</span>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<div class="overlay" id="overlay"></div>
+
+		<!-- ============ MAIN ============ -->
+		<div class="dash-main">
+			<header class="dash-topbar">
+				<button class="dash-burger" id="burger" aria-label="Toggle menu"></button>
+				<div class="dash-title">
+					<h1 id="pageTitle">Overview</h1>
+					<p id="pageSub">Your bookings and vehicles at a glance</p>
+				</div>
+				<div class="dash-topbar__actions">
+					<label class="dash-search">
+						<span class="s-ico"></span>
+						<input type="search" id="globalSearch" placeholder="Search your bookings…" aria-label="Search">
+					</label>
+					<button class="dash-icon-btn" id="notifBtn" aria-label="Notifications"><span class="b-ico"></span><span class="dot" id="notifDot" hidden></span></button>
+					<div class="dash-profile">
+						<button class="dash-profile__btn" id="profileBtn" aria-haspopup="true" aria-expanded="false">
+							<img id="topAvatar" src="images/avatar-1.webp" alt="">
+							<span class="who"><strong id="topUserName" style="display:block;color:#fff;font-family:var(--font-d);font-size:.82rem;line-height:1.1">—</strong><span id="topUserRole" style="font-size:.72rem;color:var(--muted)">—</span></span>
+						</button>
+						<div class="dash-menu" id="profileMenu" role="menu">
+							<div class="dash-menu__head"><strong id="menuName">—</strong><span id="menuEmail">—</span></div>
+							<a href="#profile" data-goto="#profile"><span class="mi1"></span> My profile</a>
+							<a href="index.html"><span class="mi2"></span> View website</a>
+							<button type="button" data-logout><span class="mi3"></span> Sign out</button>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<main class="dash-content">
+				<section class="dash-view" id="view-overview" data-title="Overview" data-sub="Your bookings and vehicles at a glance"><div data-body="overview"></div></section>
+				<section class="dash-view" id="view-book" data-title="Book a Service" data-sub="Pick a service, choose a slot and we'll take it from there"><div data-body="book"></div></section>
+				<section class="dash-view" id="view-bookings" data-title="My Bookings" data-sub="Track, reschedule or cancel your appointments"><div data-body="bookings"></div></section>
+				<section class="dash-view" id="view-tracking" data-title="Track Service" data-sub="Follow your car through every stage of the detail"><div data-body="tracking"></div></section>
+				<section class="dash-view" id="view-vehicles" data-title="My Vehicles" data-sub="Manage the cars we look after for you"><div data-body="vehicles"></div></section>
+				<section class="dash-view" id="view-payments" data-title="Payments" data-sub="Invoices, receipts and outstanding balances"><div data-body="payments"></div></section>
+				<section class="dash-view" id="view-offers" data-title="Offers" data-sub="Promotions available on your account"><div data-body="offers"></div></section>
+				<section class="dash-view" id="view-reviews" data-title="My Reviews" data-sub="Rate the work we've done for you"><div data-body="reviews"></div></section>
+				<section class="dash-view" id="view-profile" data-title="Profile" data-sub="Your contact details and password"><div data-body="profile"></div></section>
+			</main>
+		</div>
+	</div>
+
+	<div id="modalRoot" class="modal-root"></div>
+	<div id="toastRoot" class="toast-root"></div>
+
+	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+	<script src="js/dashboard/store.js"></script>
+	<script src="js/dashboard/ui.js"></script>
+	<script src="js/dashboard/auth.js"></script>
+	<script src="js/dashboard/customer.js"></script>
+<script>
+	function validateEmailInput(input) {
+		var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/;
+		var error = input.parentElement ? input.parentElement.querySelector('.email-error') : (input.parentElement ? input.parentElement.parentElement.querySelector('.email-error') : null);
+		if (!error && input.parentElement) {
+			error = input.parentElement.querySelector('.footer-news-error');
+		}
+		if (input.value.trim() === '') {
+			if (error) error.style.display = 'none';
+			input.classList.remove('is-invalid');
+			return;
+		}
+		if (emailRegex.test(input.value.trim())) {
+			if (error) error.style.display = 'none';
+			input.classList.remove('is-invalid');
+		} else {
+			if (error) error.style.display = 'block';
+			input.classList.add('is-invalid');
+		}
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+		var forms = document.querySelectorAll('form');
+		var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/;
+		forms.forEach(function(form) {
+			form.addEventListener('submit', function(e) {
+				var emailInputs = form.querySelectorAll('.email-input, .footer-news-input, input[type="email"]');
+				var hasInvalid = false;
+				emailInputs.forEach(function(input) {
+					var val = input.value.trim();
+					if (!emailRegex.test(val)) {
+						hasInvalid = true;
+						var error = input.parentElement ? input.parentElement.querySelector('.email-error, .footer-news-error') : null;
+						if (error) error.style.display = 'block';
+						input.classList.add('is-invalid');
+						input.focus();
+					}
+				});
+				if (hasInvalid) {
+					e.preventDefault();
+				}
+			});
+		});
+	});
+</script>
+<script>function initProfile(){try{var n=localStorage.getItem("userName")||"User";var r=localStorage.getItem("userRole")||"";var ini=n.trim().split(/\s+/).filter(Boolean).map(function(x){return x[0]||"";}).join("").substring(0,2).toUpperCase();var el=document.getElementById("sideUserName");if(el)el.textContent=n;el=document.getElementById("sideUserRole");if(el)el.textContent=r;var av=document.getElementById("sideAvatar");if(av){if(av.tagName==="IMG"){av.alt=n;}else{av.textContent=ini;}}}catch(e){}};document.addEventListener("DOMContentLoaded",initProfile);</script></body>
+</html>
